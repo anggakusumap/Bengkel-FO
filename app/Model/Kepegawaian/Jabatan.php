@@ -39,8 +39,4 @@ class Jabatan extends Model
         return $this->hasMany(Pegawai::class, 'id_jabatan');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

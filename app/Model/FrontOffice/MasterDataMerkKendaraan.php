@@ -14,7 +14,7 @@ class MasterDataMerkKendaraan extends Model
     protected $primaryKey = 'id_merk_kendaraan';
 
     protected $fillable = [
-        'id_jenis_kendaraan', 'merk_kendaraan', 'id_bengkel'
+        'id_jenis_kendaraan', 'merk_kendaraan'
     ];
 
     protected $hidden = [];
@@ -37,8 +37,4 @@ class MasterDataMerkKendaraan extends Model
         ];
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

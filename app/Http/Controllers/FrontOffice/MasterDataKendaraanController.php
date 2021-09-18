@@ -19,12 +19,20 @@ class MasterDataKendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraan = MasterDataKendaraan::with(['merk_kendaraan', 'jenis_kendaraan'])->get();
-        $jenis_kendaraan = MasterDataJenisKendaraan::all();
-        $merk_kendaraan = MasterDataMerkKendaraan::all();
+        $kendaraan = MasterDataKendaraan::with(['merk_kendaraan', 'jenis_kendaraan'])->where('status','=','Aktif')->get();
+        $jenis = MasterDataJenisKendaraan::get();
+        $merk = MasterDataMerkKendaraan::get();
+
+        $id = MasterDataKendaraan::getId();
+        foreach($id as $value);
+        $idlama = $value->id_kendaraan;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_kendaraan = 'KD-'.$blt.'/'.$idbaru;
 
 
-        return view('pages.frontoffice.masterdata.kendaraan.index', compact('kendaraan'));
+        return view('pages.frontoffice.masterdata.kendaraan.index', compact('kendaraan','jenis','merk','kode_kendaraan'));
     }
 
     /**
@@ -34,26 +42,7 @@ class MasterDataKendaraanController extends Controller
      */
     public function create()
     {
-        $merk_kendaraan = MasterDataMerkKendaraan::all();
-        $jenis_kendaraan = MasterDataJenisKendaraan::all();
-
-        $id = MasterDataKendaraan::getId();
-        foreach ($id as $value);
-        $idlama = $value->id_kendaraan;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
-
-        $kode_kendaraan = 'KD-' . $blt . '/' . $idbaru;
-
-        $id = MasterDataMerkKendaraan::getId();
-        foreach ($id as $value);
-        $idlama = $value->id_merk_kendaraan;
-        $idbaru = $idlama + 1;
-        $blt = date('m');
-
-        $kode_merk_kendaraan = 'MRKKD-' . $idbaru . '/' . $blt;
-
-        return view('pages.frontoffice.masterdata.kendaraan.create', compact('merk_kendaraan', 'jenis_kendaraan', 'kode_kendaraan', 'kode_merk_kendaraan'));
+        
     }
 
     /**
@@ -64,11 +53,15 @@ class MasterDataKendaraanController extends Controller
      */
     public function store(KendaraanRequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $data = $request->all();
+        $kendaraan = new MasterDataKendaraan;
+        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
+        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
+        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
+        $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+        $kendaraan->status = 'Diajukan';
 
-        MasterDataKendaraan::create($data);
-        return redirect()->route('kendaraan.index')->with('messageberhasil', 'Data Kendaraan Berhasil ditambahkan');
+        $kendaraan->save();
+        return redirect()->route('kendaraan.index')->with('messageberhasil', 'Data Kendaraan Berhasil diajukan - Mohon tunggu untuk Approval');
     }
 
     /**
@@ -90,16 +83,7 @@ class MasterDataKendaraanController extends Controller
      */
     public function edit($id_kendaraan)
     {
-        // return $id_kendaraan;
-        $item = MasterDataKendaraan::findOrFail($id_kendaraan);
-        $jenis_kendaraan = MasterDataJenisKendaraan::all();
-        $merk_kendaraan = MasterDataMerkKendaraan::all();
-
-        return view('pages.frontoffice.masterdata.kendaraan.edit', [
-            'item' => $item,
-            'jenis_kendaraan' => $jenis_kendaraan,
-            'merk_kendaraan' => $merk_kendaraan
-        ]);
+       
     }
 
     /**
@@ -111,15 +95,7 @@ class MasterDataKendaraanController extends Controller
      */
     public function update(Request $request, $id_kendaraan)
     {
-        $kendaraan = MasterDataKendaraan::findOrFail($id_kendaraan);
-        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
-        $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
-        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
-        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
-
-        $kendaraan->save();
-
-        return redirect()->route('kendaraan.index')->with('messageberhasil', 'Data Kendaraan Berhasil diubah');
+        
     }
 
     /**
@@ -130,9 +106,6 @@ class MasterDataKendaraanController extends Controller
      */
     public function destroy($id_kendaraan)
     {
-        $kendaraan = MasterDataKendaraan::findOrFail($id_kendaraan);
-        $kendaraan->delete();
-
-        return redirect()->back()->with('messagehapus', 'Data Kendaraan Berhasil dihapus');
+        
     }
 }

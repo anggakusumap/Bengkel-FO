@@ -22,92 +22,108 @@
     {{-- MAIN PAGE CONTENT --}}
 
     <div class="container mt-n10">
-        <div class="card mb-4">
-            <div class="card card-header-actions">
-                <div class="card-header">List Kendaraan
-                    <a href="{{ route('kendaraan.create') }}" class="btn btn-sm btn-primary"> Tambah Kendaraan</a>
+        <div class="row">
+            <div class="col-lg-3">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Pengajuan</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 10rem;"
+                                src="/backend/src/assets/img/freepik/tambahdata.png" alt="">
+                        </div>
+                        <div class=" m-0 font-weight-bold text-primary" style="text-align: center">Pengajuan Tambah Data
+                            Kendaraan
+                        </div>
+                        <hr class="my-2">
+                        <p class="small" style="text-align: center">Anda ingin menambahkan data kendaraan yang tidak
+                            terdaftar?
+                            klik tombol <b>pengajuan</b>. </p>
+                        <div class="text-center">
+                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                                data-target="#Modaltambah">
+                                Ajukan Data Kendaraan
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-arrow-right ml-1">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="datatable">
-                    @if(session('messageberhasil'))
-                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messageberhasil') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
-                    @if(session('messagehapus'))
-                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagehapus') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
-                    {{-- SHOW ENTRIES --}}
-                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                    <thead>
-                                        <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">No</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jenis Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Merk Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($kendaraan as $item)
-                                        <tr role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->kode_kendaraan }}</td>
-                                            <td>{{ $item->nama_kendaraan }}</td>
-                                            <td>{{ $item->jenis_kendaraan->jenis_kendaraan }}</td>
-                                            <td>{{ $item->merk_kendaraan->merk_kendaraan }}</td>
-                                            <td>
-                                                <a href="{{ route('kendaraan.edit', $item->id_kendaraan) }}"
-                                                    class="btn btn-primary btn-datatable">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_kendaraan }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">
-                                                Data Jenis Kendaraan Kosong
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+            <div class="col-lg-9">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="datatable">
+                            @if(session('messageberhasil'))
+                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messageberhasil') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+                            @if(session('messagehapus'))
+                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messagehapus') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+                            {{-- SHOW ENTRIES --}}
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Kode Kendaraan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Nama Kendaraan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Jenis Kendaraan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Merk Kendaraan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($kendaraan as $item)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td>{{ $item->kode_kendaraan }}</td>
+                                                    <td>{{ $item->nama_kendaraan }}</td>
+                                                    <td>{{ $item->jenis_kendaraan->jenis_kendaraan }}</td>
+                                                    <td>{{ $item->merk_kendaraan->merk_kendaraan }}</td>
+                                                </tr>
+                                                @empty
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,39 +131,81 @@
             </div>
         </div>
     </div>
+</main>
 
 
-    {{-- MODAL DELETE --}}
-    @forelse ($kendaraan as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id_kendaraan }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <form action="{{ route('kendaraan.destroy', $item->id_kendaraan) }}" method="POST"
-                    class="d-inline">
-                    @csrf
-                    @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Kendaraan
-                        {{ $item->nama_kendaraan }}?
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
-                    </div>
-                </form>
+<div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Ajukan Data Kendaraan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
+            <form action="{{ route('kendaraan.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1" for="kode_kendaraan">Kode Kendaraan</label>
+                        <input class="form-control" name="kode_kendaraan" type="text" id="kode_kendaraan"
+                            placeholder="Input Kode Merk" value="{{ $kode_kendaraan }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_jenis_kendaraan">Jenis Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_jenis_kendaraan"
+                            class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
+                            id="id_jenis_kendaraan" required>
+                            <option>Pilih Jenis</option>
+                            @foreach ($jenis as $item)
+                            <option value="{{ $item->id_jenis_kendaraan }}">
+                                {{ $item->jenis_kendaraan }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('id_jenis_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_merk_kendaraan">Merk Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id_merk_kendaraan"
+                            class="form-control @error('id_merk_kendaraan') is-invalid @enderror" id="id_merk_kendaraan"
+                            required>
+                            <option>Pilih Jenis</option>
+                            @foreach ($merk as $merks)
+                            <option value="{{ $merks->id_merk_kendaraan }}">
+                                {{ $merks->merk_kendaraan }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('id_merk_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_kendaraan">Nama Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="nama_kendaraan" type="text" id="nama_kendaraan"
+                            placeholder="Input Nama Kendaraan" value="{{ old('nama_kendaraan') }}"
+                            class="form-control @error('nama_kendaraan') is-invalid @enderror" required></input>
+                        @error('nama_kendaraan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+                @if (count($errors) > 0)
+                @endif
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Ajukan</button>
+                </div>
+            </form>
         </div>
     </div>
-
-    @empty
-
-    @endforelse
-</main>
+</div>
 
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)

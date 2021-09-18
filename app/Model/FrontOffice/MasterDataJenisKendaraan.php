@@ -13,15 +13,11 @@ class MasterDataJenisKendaraan extends Model
     protected $primaryKey = 'id_jenis_kendaraan';
 
     protected $fillable = [
-        'jenis_kendaraan', 'keterangan', 'id_bengkel'
+        'jenis_kendaraan', 'keterangan'
     ];
 
     protected $hidden = [];
 
     public $timestamps = false;
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

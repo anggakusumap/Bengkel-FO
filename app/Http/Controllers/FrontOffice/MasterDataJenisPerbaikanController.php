@@ -18,7 +18,7 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function index()
     {
-        $jenisperbaikan = MasterDataJenisPerbaikan::get();
+        $jenisperbaikan = MasterDataJenisPerbaikan::where('status','=','Aktif')->get();
 
         $id = MasterDataJenisPerbaikan::getId();
         foreach ($id as $value);
@@ -49,12 +49,15 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function store(JenisPerbaikanrequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->group_jenis_perbaikan);
+        $jenis = new MasterDataJenisPerbaikan;
+        $jenis->kode_jenis_perbaikan = $request->kode_jenis_perbaikan;
+        $jenis->nama_jenis_perbaikan = $request->nama_jenis_perbaikan;
+        $jenis->group_jenis_perbaikan = $request->group_jenis_perbaikan;
+        $jenis->harga_jenis_perbaikan = $request->harga_jenis_perbaikan;
+        $jenis->status = 'Diajukan';
 
-        MasterDataJenisPerbaikan::create($data);
-        return redirect()->route('jenis-perbaikan.index')->with('messageberhasil', 'Data Jasa Perbaikan Berhasil ditambahkan');
+        $jenis->save();
+        return redirect()->route('jenis-perbaikan.index')->with('messageberhasil', 'Data Jasa Perbaikan Berhasil diajukan - Mohon tunggu untuk Approval');
     }
 
     /**

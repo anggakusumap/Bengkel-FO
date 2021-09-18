@@ -13,7 +13,7 @@ class MasterDataJenisPerbaikan extends Model
     protected $primaryKey = 'id_jenis_perbaikan';
 
     protected $fillable = [
-        'kode_jenis_perbaikan', 'nama_jenis_perbaikan', 'group_jenis_perbaikan', 'harga_jenis_perbaikan', 'id_bengkel'
+        'kode_jenis_perbaikan', 'nama_jenis_perbaikan', 'group_jenis_perbaikan', 'harga_jenis_perbaikan',
     ];
 
     protected $hidden = [];
@@ -25,8 +25,4 @@ class MasterDataJenisPerbaikan extends Model
         return $getId = DB::table('tb_fo_master_jenis_perbaikan')->orderBy('id_jenis_perbaikan', 'DESC')->take(1)->get();
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }
