@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Model\Inventory\DetailSparepart;
 use Illuminate\Notifications\Notifiable;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;

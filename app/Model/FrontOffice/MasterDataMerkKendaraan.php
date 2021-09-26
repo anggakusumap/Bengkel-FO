@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Model\SingleSignOn\JenisBengkel;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -14,7 +15,7 @@ class MasterDataMerkKendaraan extends Model
     protected $primaryKey = 'id_merk_kendaraan';
 
     protected $fillable = [
-        'id_jenis_kendaraan', 'merk_kendaraan'
+        'id_jenis_kendaraan', 'merk_kendaraan','id_jenis_bengkel'
     ];
 
     protected $hidden = [];
@@ -24,6 +25,11 @@ class MasterDataMerkKendaraan extends Model
     public function jenis_kendaraan()
     {
         return $this->belongsTo(MasterDataJenisKendaraan::class, 'id_jenis_kendaraan', 'id_jenis_kendaraan');
+    }
+
+    public function JenisBengkel()
+    {
+        return $this->belongsTo(JenisBengkel::class, 'id_jenis_bengkel', 'id_jenis_bengkel');
     }
 
     public static function getId()

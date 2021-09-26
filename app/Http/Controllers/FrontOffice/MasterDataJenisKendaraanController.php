@@ -18,7 +18,7 @@ class MasterDataJenisKendaraanController extends Controller
      */
     public function index()
     {
-        $jenis_kendaraan = MasterDataJenisKendaraan::get();
+        $jenis_kendaraan = MasterDataJenisKendaraan::where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)->get();
 
         return view('pages.frontoffice.masterdata.jenis_kendaraan.index', compact('jenis_kendaraan'));
     }

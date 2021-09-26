@@ -19,7 +19,11 @@ class MasterDataKendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraan = MasterDataKendaraan::with(['merk_kendaraan', 'jenis_kendaraan'])->where('status','=','Aktif')->get();
+        $kendaraan = MasterDataKendaraan::with(['merk_kendaraan', 'jenis_kendaraan'])
+        ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
+        ->where('status','=','Aktif')
+        ->get();
+
         $jenis = MasterDataJenisKendaraan::get();
         $merk = MasterDataMerkKendaraan::get();
 
@@ -53,12 +57,24 @@ class MasterDataKendaraanController extends Controller
      */
     public function store(KendaraanRequest $request)
     {
-        $kendaraan = new MasterDataKendaraan;
-        $kendaraan->kode_kendaraan = $request->kode_kendaraan;
-        $kendaraan->nama_kendaraan = $request->nama_kendaraan;
-        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
-        $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
-        $kendaraan->status = 'Diajukan';
+
+        if(Auth::user()->Bengkel->id_jenis_bengkel == '1'){
+            $kendaraan = new MasterDataKendaraan;
+            $kendaraan->kode_kendaraan = $request->kode_kendaraan;
+            $kendaraan->nama_kendaraan = $request->nama_kendaraan;
+            $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
+            $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+            $kendaraan->id_jenis_bengkel = '1';
+            $kendaraan->status = 'Diajukan';
+        }else if(Auth::user()->Bengkel->id_jenis_bengkel == '2'){
+            $kendaraan = new MasterDataKendaraan;
+            $kendaraan->kode_kendaraan = $request->kode_kendaraan;
+            $kendaraan->nama_kendaraan = $request->nama_kendaraan;
+            $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
+            $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+            $kendaraan->id_jenis_bengkel = '2';
+            $kendaraan->status = 'Diajukan';
+        }
 
         $kendaraan->save();
         return redirect()->route('kendaraan.index')->with('messageberhasil', 'Data Kendaraan Berhasil diajukan - Mohon tunggu untuk Approval');

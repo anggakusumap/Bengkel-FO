@@ -6,6 +6,7 @@ use App\Model\FrontOffice\PenjualanSparepart;
 use App\Http\Controllers\Controller;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\DetailPenjualanSparepart;
+use App\Model\Inventory\DetailSparepart;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Sparepart;
 use Carbon\Carbon;
@@ -34,7 +35,8 @@ class PenjualanSparepartController extends Controller
     public function create()
     {
         $customer = CustomerBengkel::all();
-        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
+        // $sparepart = DetailSparepart::with('Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
+        $sparepart = DetailSparepart::with('Sparepart','Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
 
 
         // ->where('nama_jabatan', '!=', 'Owner')->get();
@@ -75,11 +77,14 @@ class PenjualanSparepartController extends Controller
         $temp = 0;
         foreach ($request->sparepart as $key => $item) {
             $temp = $temp + $item['total_harga'];
-            $sparepart = Sparepart::findOrFail($item['id_sparepart']);
-            $sparepart->stock = $sparepart->stock - $item['jumlah'];
-            if ($sparepart->stock >= $sparepart->stock_min) {
+
+            $sparepart = DetailSparepart::where('id_sparepart', $item['id_sparepart'])->first();
+
+            // $sparepart = Sparepart::findOrFail($item['id_sparepart']);
+            $sparepart->qty_stok = $sparepart->qty_stok - $item['jumlah'];
+            if ($sparepart->qty_stok >= $sparepart->stok_min) {
                 $sparepart->status_jumlah = 'Cukup';
-            } else if ($sparepart->stock == 0) {
+            } else if ($sparepart->qty_stok == 0) {
                 $sparepart->status_jumlah = 'Habis';
             } else {
                 $sparepart->status_jumlah = 'Kurang';
@@ -97,7 +102,7 @@ class PenjualanSparepartController extends Controller
                 $kartu_gudang->saldo_akhir =  $item['jumlah'];
 
             $kartu_gudang->jumlah_keluar = $kartu_gudang->jumlah_keluar + $item['jumlah'];
-            $kartu_gudang->id_sparepart = $sparepart->id_sparepart;
+            $kartu_gudang->id_detail_sparepart = $sparepart->id_detail_sparepart;
             $kartu_gudang->harga_beli = $kartu_gudang->harga + $item['harga'];
             $kartu_gudang->kode_transaksi = $penjualan->kode_penjualan;
             $kartu_gudang->tanggal_transaksi = $penjualan->tanggal;
@@ -137,20 +142,20 @@ class PenjualanSparepartController extends Controller
     public function edit($id_penjualan_sparepart)
     {
         $customer = CustomerBengkel::all();
-        $sparepart = Sparepart::with('Kartugudangpenjualan')->where('stock', '>', 0)->get();
+        $sparepart = DetailSparepart::with('Sparepart','Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
         $today = Carbon::today();
-        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer', 'Detailsparepart.kartugudangpenjualan')->findOrFail($id_penjualan_sparepart);
+        $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer')->findOrFail($id_penjualan_sparepart);
 
 
 
-        // for($i = 0;  $i < count($penjualan->Detailsparepart); $i++ ){
-        //     for($j = 0;  $j < count($penjualan->Supplier->Sparepart); $j++ ){
-        //        if ($retur->Detailretur[$i]->id_sparepart == $retur->Supplier->Sparepart[$j]->id_sparepart ){
-        //         $retur->Supplier->Sparepart[$j]->qty_retur = $retur->Detailretur[$i]->pivot->qty_retur;
-        //         $retur->Supplier->Sparepart[$j]->keterangan = $retur->Detailretur[$i]->pivot->keterangan;
-        //        };
-        //     }
-        // }
+        for($i = 0;  $i < count($penjualan->Detailsparepart); $i++ ){
+            for($j = 0;  $j < count($sparepart); $j++ ){
+                if ($penjualan->Detailsparepart[$i]->id_sparepart == $sparepart[$j]->id_sparepart ){
+                    $sparepart[$j]->jumlah = $penjualan->Detailsparepart[$i]->pivot->jumlah;
+                    $sparepart[$j]->harga = $penjualan->Detailsparepart[$i]->pivot->harga;
+                   };
+            }
+        }
 
         return view('pages.frontoffice.penjualan_sparepart.edit')->with([
             'penjualan' => $penjualan,
