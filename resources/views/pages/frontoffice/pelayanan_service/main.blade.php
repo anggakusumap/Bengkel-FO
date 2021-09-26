@@ -124,10 +124,6 @@
                                                 @endif
 
                                                 @if ($item->status == 'menunggu')
-                                                <a href="" class="btn btn-primary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-original-title="Hapus" data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_service_advisor }}">
@@ -135,7 +131,7 @@
                                                 </a>
 
                                                 <a data-target="#Modaltambah-{{ $item->id_service_advisor }}"
-                                                    data-toggle="modal" class="btn btn-success btn-sm mt-1 px-4"
+                                                    data-toggle="modal" class="btn btn-success btn-xs mt-1 px-4"
                                                     type="button" style="color: white">
                                                     Kerjakan
                                                 </a>
