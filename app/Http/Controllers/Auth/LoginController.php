@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::SSO;
+    protected $redirectTo = RouteServiceProvider::FO;
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('pages.singlesignon.login');
+        return redirect()->to('/sso');
     }
 
     public function username()
