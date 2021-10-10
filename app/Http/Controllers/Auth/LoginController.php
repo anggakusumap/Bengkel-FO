@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return redirect()->to('/frontoffice');
+        return redirect()->to('/asd');
     }
 
     public function username()
