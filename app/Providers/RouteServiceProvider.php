@@ -23,7 +23,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
     public const SSO = '/sso';
-    public const FO = '/frontoffice';
 
     /**
      * Define your route model bindings, pattern filters, etc.
