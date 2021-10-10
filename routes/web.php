@@ -74,5 +74,18 @@ Route::group(
                 Route::get('/cetak-work-order/{id}', 'PelayananServiceController@cetakWorkOrder')->name('cetak-wo');
                 Route::get('/cetak-invoice-sparepart/{id}', 'PenjualanSparepartController@cetakSparepart')->name('cetak-sparepart');
             });
+
+
+        // ------------------------------------------------------------------------
+        // MODUL SSO
+        // DASHBOARD
+        Route::prefix('sso')
+            ->namespace('SingleSignOn')
+            ->middleware(['verified'])
+            ->group(function () {
+                Route::get('/', 'DashboardSSOController@index')
+                    ->name('dashboardsso');
+                Route::resource('profile', 'ProfileController');
+            });
     }
 );
