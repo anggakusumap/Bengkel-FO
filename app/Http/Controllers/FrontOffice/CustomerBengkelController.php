@@ -67,7 +67,7 @@ class CustomerBengkelController extends Controller
 
         // return $service;
 
-        $penjualan = PenjualanSparepart::with('Detailsparepart')->join('tb_fo_customer_bengkel','tb_fo_penjualan_sparepart.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
+        $penjualan = PenjualanSparepart::with('Detailsparepart','Bengkel')->join('tb_marketplace_bengkel','tb_fo_penjualan_sparepart.id_bengkel','tb_marketplace_bengkel.id_bengkel')
         ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)->where('tb_fo_penjualan_sparepart.status_bayar','=', 'Lunas')
         ->get();
 

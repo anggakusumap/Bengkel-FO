@@ -86,7 +86,7 @@
                                                 <td>{{ $item->kode_sa }}</td>
                                                 <td>{{ $item->kendaraan->nama_kendaraan }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                    <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservice-{{ $item->id_service_advisor }}">
                                                         <i class="fas fa-edit"></i>
@@ -94,7 +94,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                    <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservicesparepart-{{ $item->id_service_advisor }}">
                                                         <i class="fas fa-edit"></i>
@@ -112,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- PENJUALAN --}}
                 <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
                     <div class="datatable">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -127,6 +128,11 @@
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
                                                     No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending"
+                                                    style="width: 20px;">
+                                                    Tanggal</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
@@ -136,31 +142,32 @@
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
-                                                    Kode Sa</th>
+                                                    Kode Penjualan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
-                                                    Kendaraan</th>
+                                                    Total Bayar</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
-                                                    Detail Service</th>
+                                                    Detail</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($service as $item)
+                                            @forelse ($penjualan as $item)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
+                                                <td>{{ $item->tanggal }}</td>
                                                 <td>{{ $item->nama_bengkel }}</td>
-                                                <td>{{ $item->kode_sa }}</td>
-                                                <td>{{ $item->kendaraan->nama_kendaraan }}</td>
+                                                <td>{{ $item->kode_penjualan }}</td>
+                                                <td>Rp. {{ number_format($item->kode_penjualan) }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                    <a href="" class="btn btn-primary btn-secondary" type="button"
                                                         data-toggle="modal"
-                                                        data-target="#Modalservice-{{ $item->id_service_advisor }}">
+                                                        data-target="#Modalpenjualan-{{ $item->id_penjualan_sparepart }}">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
 
@@ -182,7 +189,81 @@
 </div>
 
 
+@forelse ($penjualan as $item)
+<div class="modal fade" id="Modalpenjualan-{{ $item->id_penjualan_sparepart }}" data-backdrop="static" tabindex="-1"
+    role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Detail</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Nama Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Merk Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Jumlah</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Harga</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Total Harga</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($item->Detailsparepart as $tes)
+                                        <tr role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                            </th>
+                                            <td>{{ $tes->nama_sparepart ?? '' }}</td>
+                                            <td>{{ $tes->merksparepart->nama_sparepart ?? '' }}</td>
+                                            <td>{{ $tes->pivot->jumlah ?? '' }}</td>
+                                            <td>{{ $tes->pivot->harga ?? '' }}</td>
+                                            <td>{{ $tes->pivot->total_harga ?? '' }}</td>
+                                        </tr>
+                                        @empty
 
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{-- Modal Edit --}}
 @forelse ($service as $item)
