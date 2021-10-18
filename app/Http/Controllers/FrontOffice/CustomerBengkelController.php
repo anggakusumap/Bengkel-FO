@@ -61,7 +61,6 @@ class CustomerBengkelController extends Controller
         ->where('tb_service_advisor.id_customer_bengkel', $id_customer_bengkel)->where('tb_service_advisor.status','=','selesai_pembayaran')
         ->get();
 
-        $tes = PenerimaanService::with('detail_perbaikan')->get();
 
         // return $service;
 
@@ -72,7 +71,7 @@ class CustomerBengkelController extends Controller
         ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)->where('tb_fo_penjualan_sparepart.status_bayar','=', 'Lunas')
         ->get();
 
-        return view('pages.frontoffice.customer_terdaftar.detail',compact('service','penjualan','customer','tes'));
+        return view('pages.frontoffice.customer_terdaftar.detail',compact('service','penjualan','customer'));
 
     }
 

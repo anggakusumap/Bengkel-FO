@@ -103,7 +103,7 @@
 
 
 {{-- Modal Edit --}}
-@forelse ($tes as $item)
+@forelse ($service as $item)
 <div class="modal fade" id="Modalservice-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -137,7 +137,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($tes->detail_perbaikan as $items)
+                                            @forelse ($item->detail_perbaikan as $items)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                                 <td>{{ $items->nama_jenis_perbaikan ?? '' }}</td>
