@@ -19,7 +19,7 @@
 </header>
 
 {{-- MAIN PAGE CONTENT --}}
-<div class="container-fluid">
+<div class="container-fluid mt-10">
     <div class="card">
         <div class="card-header border-bottom">
             <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
@@ -89,7 +89,7 @@
                                                     <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservice-{{ $item->id_service_advisor }}">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="fas fa-eye"></i>
                                                     </a>
 
                                                 </td>
@@ -97,7 +97,7 @@
                                                     <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservicesparepart-{{ $item->id_service_advisor }}">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="fas fa-eye"></i>
                                                     </a>
 
                                                 </td>
@@ -118,7 +118,7 @@
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                    <table class="table table-bordered table-hover dataTable" id="dataTableGas"
                                         width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
                                         style="width: 100%;">
                                         <thead>
@@ -132,12 +132,13 @@
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
-                                                    Tanggal</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    Bengkel</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
-                                                    Bengkel</th>
+                                                    Tanggal</th>
+                                               
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
@@ -160,15 +161,16 @@
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $item->tanggal }}</td>
                                                 <td>{{ $item->nama_bengkel }}</td>
+                                                <td>{{ $item->tanggal }}</td>
+                                               
                                                 <td>{{ $item->kode_penjualan }}</td>
                                                 <td>Rp. {{ number_format($item->total_bayar) }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-secondary" type="button"
+                                                    <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalpenjualan-{{ $item->id_penjualan_sparepart }}">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="fas fa-eye"></i>
                                                     </a>
 
                                                 </td>
@@ -192,7 +194,7 @@
 @forelse ($penjualan as $item)
 <div class="modal fade" id="Modalpenjualan-{{ $item->id_penjualan_sparepart }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Detail</h5>
@@ -272,7 +274,7 @@
 @forelse ($service as $item)
 <div class="modal fade" id="Modalservice-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Edit Customer Bengkel</h5>
@@ -334,7 +336,7 @@
 @forelse ($service as $item)
 <div class="modal fade" id="Modalservicesparepart-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Edit Customer Bengkel</h5>
@@ -412,5 +414,11 @@
 
 </main>
 
+
+<script>
+     $(document).ready(function () {
+        $('#dataTableGas').DataTable();
+    });
+</script>
 
 @endsection
