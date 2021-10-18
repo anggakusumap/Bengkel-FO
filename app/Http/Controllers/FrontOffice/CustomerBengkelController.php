@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontOffice;
 use App\Model\FrontOffice\CustomerBengkel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\CustomerBengkelRequest;
+use App\Model\Service\PenerimaanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,11 +56,15 @@ class CustomerBengkelController extends Controller
     {
         $customer = CustomerBengkel::find($id_customer_bengkel);
 
-        $tes = CustomerBengkel::join('tb_service_advisor', 'tb_fo_customer_bengkel.id_customer_bengkel','tb_service_advisor.id_customer_bengkel')
-        ->whereIn('id_customer_bengkel',$id_customer_bengkel)
+        // $tes = CustomerBengkel::join('tb_service_advisor', 'tb_fo_customer_bengkel.id_customer_bengkel','tb_service_advisor.id_customer_bengkel')
+        // ->whereIn('id_customer_bengkel',$customer->id_customer_bengkel)
+        // ->get();
+
+        $tt = PenerimaanService::join('tb_fo_customer_bengkel','tb_service_advisor.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
+        ->whereIn('id_customer_bengkel', $customer->id_customer_bengkel)
         ->get();
 
-        return $tes;
+        return $tt;
 
 
     }
