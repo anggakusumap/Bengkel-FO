@@ -35,12 +35,13 @@ class PenerimaanService extends Model
     ];
 
     public $timestamps = true;
+    
 
     // protected static function booted()
     // {
     //     static::addGlobalScope(new OwnershipScope);
     // }
-
+    public $with = ['detail_perbaikan'];
     // relations
     public static function getId()
     {

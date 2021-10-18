@@ -61,7 +61,7 @@ class CustomerBengkelController extends Controller
         ->where('tb_service_advisor.id_customer_bengkel', $id_customer_bengkel)->where('tb_service_advisor.status','=','selesai_pembayaran')
         ->get();
 
-        $serviceas = PenerimaanService::with('detail_sparepart','detail_perbaikan','kendaraan','bengkel')
+        $serviceas = PenerimaanService::with('detail_perbaikan','kendaraan')
         ->where('tb_service_advisor.id_customer_bengkel', $id_customer_bengkel)->where('tb_service_advisor.status','=','selesai_pembayaran')
         ->get();
 
