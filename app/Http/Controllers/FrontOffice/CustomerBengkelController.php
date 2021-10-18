@@ -43,7 +43,7 @@ class CustomerBengkelController extends Controller
         $data = $request->all();
 
         CustomerBengkel::create($data);
-        return redirect()->route('customerterdaftar.index')->with('messageberhasil', 'Data Customer Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil', 'Data Customer Berhasil ditambahkan');
     }
 
     /**
@@ -57,7 +57,7 @@ class CustomerBengkelController extends Controller
         $customer = CustomerBengkel::find($id_customer_bengkel);
 
         $tes = CustomerBengkel::join('tb_service_advisor', 'tb_fo_customer_bengkel.id_customer_bengkel','tb_service_advisor.id_customer_bengkel')
-        ->where('id_customer_bengkel',$id_customer_bengkel)
+        ->whereIn('id_customer_bengkel',$id_customer_bengkel)
         ->get();
 
         return $tes;
