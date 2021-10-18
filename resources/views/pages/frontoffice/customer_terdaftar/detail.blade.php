@@ -264,6 +264,9 @@
         </div>
     </div>
 </div>
+@empty
+
+@endforelse
 
 {{-- Modal Edit --}}
 @forelse ($service as $item)
@@ -324,6 +327,9 @@
         </div>
     </div>
 </div>
+@empty
+
+@endforelse
 
 @forelse ($service as $item)
 <div class="modal fade" id="Modalservicesparepart-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
@@ -400,11 +406,9 @@
         </div>
     </div>
 </div>
-
 @empty
 
 @endforelse
-
 
 </main>
 
