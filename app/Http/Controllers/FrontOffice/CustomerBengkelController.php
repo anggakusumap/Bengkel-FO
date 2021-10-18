@@ -57,14 +57,14 @@ class CustomerBengkelController extends Controller
     {
         $customer = CustomerBengkel::find($id_customer_bengkel);
 
-        $service = PenerimaanService::with('detail_sparepart','detail_perbaikan')->join('tb_fo_customer_bengkel','tb_service_advisor.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
+        $service = PenerimaanService::with('detail_sparepart','detail_perbaikan','kendaraan','bengkel')->join('tb_fo_customer_bengkel','tb_service_advisor.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
         ->where('tb_service_advisor.id_customer_bengkel', $id_customer_bengkel)->where('tb_service_advisor.status','=','selesai_pembayaran')
         ->get();
 
         return $service;
 
         $penjualan = PenjualanSparepart::with('Detailsparepart')->join('tb_fo_customer_bengkel','tb_fo_penjualan_sparepart.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
-        ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)
+        ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)->where('tb_fo_penjualan_sparepart.status_bayar','=', 'Lunas')
         ->get();
 
         return view('pages.frontoffice.customer_terdaftar.detail',compact('service','penjualan','customer'));
