@@ -102,64 +102,6 @@
 
 
 
-{{-- Modal Edit --}}
-@forelse ($service as $item)
-<div class="modal fade" id="Modalservice-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
-    role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Customer Bengkel</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-                <div class="modal-body">
-                    <div class="datatable">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                        cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                                    No</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                                    Nama Perbaikan</th> 
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                                    Jenis Perbaikan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($service->detail_perbaikan as $item)
-                                            {{-- <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                                <td>{{ $item->detail_perbaikan->nama_jenis_perbaikan ?? '' }}</td>
-                                                <td>{{ $item->detail_perbaikan->group_jenis_perbaikan ?? '' }}</td>
-                                            </tr> --}}
-                                            @empty
-                                          
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-</div>
-
-@empty
-
-@endforelse
 
 
 </main>
