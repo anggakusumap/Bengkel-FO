@@ -71,7 +71,7 @@ class CustomerBengkelController extends Controller
         ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)->where('tb_fo_penjualan_sparepart.status_bayar','=', 'Lunas')
         ->get();
 
-        return $penjualan;
+        // return $penjualan;
 
         return view('pages.frontoffice.customer_terdaftar.detail',compact('service','penjualan','customer'));
 
