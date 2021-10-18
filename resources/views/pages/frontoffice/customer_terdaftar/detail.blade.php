@@ -137,11 +137,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($service->detail_perbaikan as $item)
+                                            @forelse ($service as $item)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                                <td>{{ $item->nama_jenis_perbaikan }}</td>
-                                                <td>{{ $item->group_jenis_perbaikan }}</td>
+                                                <td>{{ $item->detail_perbaikan->nama_jenis_perbaikan }}</td>
+                                                <td>{{ $item->detail_perbaikan->group_jenis_perbaikan }}</td>
                                             </tr>
                                             @empty
                                           
