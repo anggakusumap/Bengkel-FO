@@ -19,7 +19,7 @@
 </header>
 
 {{-- MAIN PAGE CONTENT --}}
-<div class="container-fluid mt-10">
+<div class="container-fluid mt-n10">
     <div class="card">
         <div class="card-header border-bottom">
             <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
@@ -85,7 +85,7 @@
                                                 <td>{{ $item->nama_bengkel }}</td>
                                                 <td>{{ $item->kode_sa }}</td>
                                                 <td>{{ $item->kendaraan->nama_kendaraan }}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservice-{{ $item->id_service_advisor }}">
@@ -93,7 +93,7 @@
                                                     </a>
 
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalservicesparepart-{{ $item->id_service_advisor }}">
@@ -128,17 +128,17 @@
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
                                                     No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
                                                     Bengkel</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">
                                                     Tanggal</th>
-                                               
+
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
@@ -163,10 +163,10 @@
                                                 </th>
                                                 <td>{{ $item->nama_bengkel }}</td>
                                                 <td>{{ $item->tanggal }}</td>
-                                               
+
                                                 <td>{{ $item->kode_penjualan }}</td>
                                                 <td>Rp. {{ number_format($item->total_bayar) }}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="" class="btn btn-secondary btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalpenjualan-{{ $item->id_penjualan_sparepart }}">
@@ -230,12 +230,12 @@
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 Jumlah</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 Harga</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
@@ -248,7 +248,7 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                             </th>
                                             <td>{{ $tes->nama_sparepart ?? '' }}</td>
-                                            <td>{{ $tes->merksparepart->nama_sparepart ?? '' }}</td>
+                                            <td>{{ $tes->merksparepart->merk_sparepart ?? '' }}</td>
                                             <td>{{ $tes->pivot->jumlah ?? '' }}</td>
                                             <td>Rp. {{ number_format($tes->pivot->harga) }}</td>
                                             <td>Rp. {{ number_format($tes->pivot->total_harga ) }}</td>
@@ -305,6 +305,11 @@
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 Jenis Perbaikan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Harga Perbaikan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -314,7 +319,7 @@
                                             </th>
                                             <td>{{ $items->nama_jenis_perbaikan ?? '' }}</td>
                                             <td>{{ $items->group_jenis_perbaikan ?? '' }}</td>
-                                            <td>{{ $items->harga_jenis_perbaikan ?? '' }}</td>
+                                            <td>Rp. {{ number_format($items->harga_jenis_perbaikan) }}</td>
                                         </tr>
                                         @empty
 
@@ -333,13 +338,13 @@
 
 @endforelse
 
-@forelse ($service as $item)
-<div class="modal fade" id="Modalservicesparepart-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
+@forelse ($service as $items)
+<div class="modal fade" id="Modalservicesparepart-{{ $items->id_service_advisor }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Customer Bengkel</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Transaksi</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -372,12 +377,12 @@
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 Jumlah</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
                                                 Harga</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
@@ -385,7 +390,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($item->detail_sparepart as $items)
+                                        @forelse ($items->detail_sparepart as $items)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                             </th>
@@ -416,9 +421,10 @@
 
 
 <script>
-     $(document).ready(function () {
+    $(document).ready(function () {
         $('#dataTableGas').DataTable();
     });
+
 </script>
 
 @endsection
