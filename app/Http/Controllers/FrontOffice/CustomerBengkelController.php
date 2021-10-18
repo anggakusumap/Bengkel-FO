@@ -52,9 +52,17 @@ class CustomerBengkelController extends Controller
      * @param  \App\CustomerBengkel  $customerBengkel
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerBengkelRequest $request)
+    public function show($id_customer_bengkel)
     {
-        //    
+        $customer = CustomerBengkel::find($id_customer_bengkel);
+
+        $tes = CustomerBengkel::join('tb_service_advisor', 'tb_fo_customer_bengkel.id_customer_bengkel','tb_service_advisor.id_customer_bengkel')
+        ->whereIn('id_customer_bengkel',$customer->id_customer_bengkel)
+        ->get();
+
+        return $tes;
+
+
     }
 
     /**

@@ -9,7 +9,7 @@
                 <div class="col-auto mt-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i data-feather="users"></i></div>
-                        Data Customer Bengkel
+                        Riwayat Transaksi Pelanggan {{  }}
                     </h1>
                     <div class="page-header-subtitle">Data pelanggan yang pernah dilayani oleh bengkel</div>
                 </div>
