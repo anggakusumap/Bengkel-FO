@@ -89,7 +89,7 @@
                                         <td>{{ $item->nohp_customer }}</td>
                                         <td>{{ $item->alamat_customer }}</td>
                                         <td>
-                                            <a href="{{ route('customerterdaftar.show', $item->id_customer) }}" class="btn btn-primary btn-datatable" type="button">
+                                            <a href="{{ route('customerterdaftar.show', $item->id_customer_bengkel) }}" class="btn btn-primary btn-datatable" type="button">
                                                 <i class="fas fa-eye"></i>
                                              </a>
                                             <a href="" class="btn btn-primary btn-datatable" type="button"
