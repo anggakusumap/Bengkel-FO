@@ -62,7 +62,7 @@ class CustomerBengkelController extends Controller
         ->get();
 
 
-        // return $service;
+        return $service;
 
 
         // return $service;
