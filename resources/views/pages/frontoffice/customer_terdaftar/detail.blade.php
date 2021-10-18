@@ -103,7 +103,7 @@
 
 
 {{-- Modal Edit --}}
-@forelse ($service as $item)
+@forelse ($tes as $item)
 <div class="modal fade" id="Modalservice-{{ $item->id_service_advisor }}" data-backdrop="static" tabindex="-1"
     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
