@@ -43,7 +43,7 @@ class CustomerBengkelController extends Controller
         $data = $request->all();
 
         CustomerBengkel::create($data);
-        return redirect()->back()->with('messageberhasil', 'Data Customer Berhasil ditambahkan');
+        return redirect()->route('customerterdaftar.index')->with('messageberhasil', 'Data Customer Berhasil ditambahkan');
     }
 
     /**
