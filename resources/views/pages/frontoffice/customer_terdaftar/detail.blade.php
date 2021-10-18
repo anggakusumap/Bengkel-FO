@@ -48,11 +48,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                                Bengkel</th> 
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending" style="width: 20px;">
-                                                Kode Sa</th>
+                                                Kode Service</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending" style="width: 20px;">
@@ -67,7 +63,6 @@
                                         @forelse ($service as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $service->bengkel->nama_bengkel }}</td>
                                             <td>{{ $item->kode_sa }}</td>
                                             <td>{{ $item->kendaraan->nama_kendaraan }}</td>
                                             <td>{{ $item->alamat_customer }}</td>
