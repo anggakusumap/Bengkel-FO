@@ -39,7 +39,6 @@ class CustomerBengkelController extends Controller
      */
     public function store(CustomerBengkelRequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         CustomerBengkel::create($data);
