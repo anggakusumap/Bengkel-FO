@@ -228,6 +228,7 @@
                                             </th>
                                             <td>{{ $items->nama_jenis_perbaikan ?? '' }}</td>
                                             <td>{{ $items->group_jenis_perbaikan ?? '' }}</td>
+                                            <td>{{ $items->harga_jenis_perbaikan ?? '' }}</td>
                                         </tr>
                                         @empty
 
@@ -271,12 +272,27 @@
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
-                                                Nama Perbaikan</th>
+                                                Nama Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">
-                                                Jenis Perbaikan</th>
+                                                Merk Sparepart</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Jumlah</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Harga</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">
+                                                Total Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -285,7 +301,10 @@
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                             </th>
                                             <td>{{ $items->nama_sparepart ?? '' }}</td>
+                                            <td>{{ $items->merksparepart->nama_sparepart ?? '' }}</td>
                                             <td>{{ $items->pivot->jumlah ?? '' }}</td>
+                                            <td>{{ $items->pivot->harga ?? '' }}</td>
+                                            <td>{{ $items->pivot->total_harga ?? '' }}</td>
                                         </tr>
                                         @empty
 

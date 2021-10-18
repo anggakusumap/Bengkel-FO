@@ -62,7 +62,7 @@ class CustomerBengkelController extends Controller
         ->get();
 
 
-        return $service;
+      
 
 
         // return $service;
@@ -70,6 +70,8 @@ class CustomerBengkelController extends Controller
         $penjualan = PenjualanSparepart::with('Detailsparepart')->join('tb_fo_customer_bengkel','tb_fo_penjualan_sparepart.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
         ->where('tb_fo_penjualan_sparepart.id_customer_bengkel', $id_customer_bengkel)->where('tb_fo_penjualan_sparepart.status_bayar','=', 'Lunas')
         ->get();
+
+        return $penjualan;
 
         return view('pages.frontoffice.customer_terdaftar.detail',compact('service','penjualan','customer'));
 
