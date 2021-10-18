@@ -61,11 +61,8 @@ class CustomerBengkelController extends Controller
         // ->get();
 
         $tt = PenerimaanService::join('tb_fo_customer_bengkel','tb_service_advisor.id_customer_bengkel','tb_fo_customer_bengkel.id_customer_bengkel')
-        ->where('id_customer_bengkel', $customer->id_customer_bengkel)
-        ->whereNotExists(function ($q) use ($customer) {
-            $q->where('id_bengkel', 'like', "%$customer%");
-        })->get();
-    
+        ->where('id_customer_bengkel', $customer->id_customer_bengkel)->except(['id_bengkel'])
+        ->get();
 
         return $tt;
 
