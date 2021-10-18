@@ -36,10 +36,10 @@ class PenerimaanService extends Model
 
     public $timestamps = true;
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new OwnershipScope);
+    // }
 
     // relations
     public static function getId()
