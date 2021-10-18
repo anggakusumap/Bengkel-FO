@@ -163,7 +163,7 @@
                                                 <td>{{ $item->tanggal }}</td>
                                                 <td>{{ $item->nama_bengkel }}</td>
                                                 <td>{{ $item->kode_penjualan }}</td>
-                                                <td>Rp. {{ number_format($item->kode_penjualan) }}</td>
+                                                <td>Rp. {{ number_format($item->total_bayar) }}</td>
                                                 <td>
                                                     <a href="" class="btn btn-primary btn-secondary" type="button"
                                                         data-toggle="modal"
@@ -248,8 +248,8 @@
                                             <td>{{ $tes->nama_sparepart ?? '' }}</td>
                                             <td>{{ $tes->merksparepart->nama_sparepart ?? '' }}</td>
                                             <td>{{ $tes->pivot->jumlah ?? '' }}</td>
-                                            <td>{{ $tes->pivot->harga ?? '' }}</td>
-                                            <td>{{ $tes->pivot->total_harga ?? '' }}</td>
+                                            <td>Rp. {{ number_format($tes->pivot->harga) }}</td>
+                                            <td>Rp. {{ number_format($tes->pivot->total_harga ) }}</td>
                                         </tr>
                                         @empty
 
@@ -390,8 +390,8 @@
                                             <td>{{ $items->nama_sparepart ?? '' }}</td>
                                             <td>{{ $items->merksparepart->nama_sparepart ?? '' }}</td>
                                             <td>{{ $items->pivot->jumlah ?? '' }}</td>
-                                            <td>{{ $items->pivot->harga ?? '' }}</td>
-                                            <td>{{ $items->pivot->total_harga ?? '' }}</td>
+                                            <td>Rp. {{ number_format($tes->pivot->harga) }}</td>
+                                            <td>Rp. {{ number_format($tes->pivot->total_harga ) }}</td>
                                         </tr>
                                         @empty
 
