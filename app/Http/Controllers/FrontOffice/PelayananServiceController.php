@@ -23,7 +23,7 @@ class PelayananServiceController extends Controller
     {
         $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])
         ->where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_service_advisor', 'DESC')->get();
-        return $pelayanan;
+       
         
         $pitstop = MasterDataPitstop::where('id_bengkel', Auth::user()->id_bengkel)->get();
         // return $pelayanan;
