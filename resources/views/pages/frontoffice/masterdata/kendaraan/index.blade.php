@@ -25,11 +25,11 @@
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Master Perbaikan Global</a>
+                            aria-controls="overview" aria-selected="true">Master Kendaraan Global</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
-                            aria-controls="example" aria-selected="false">Master Perbaikan Lokal</a>
+                            aria-controls="example" aria-selected="false">Master Kendaraan Lokal</a>
                     </li>
                 </ul>
             </div>
