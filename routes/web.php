@@ -51,6 +51,8 @@ Route::group(
             ->group(function () {
                 Route::resource('jenis-kendaraan', 'MasterDataJenisKendaraanController');
                 Route::resource('jenis-perbaikan', 'MasterDataJenisPerbaikanController');
+                Route::delete('/jenis-perbaikan/{id}', 'MasterDataJenisPerbaikanController@hapuscuy')->name('hapusdetailperbaikan');
+
                 Route::resource('diskon', 'MasterDataDiskonController');
                 Route::resource('pitstop', 'MasterDataPitstopController');
                 Route::resource('reminder', 'MasterDataReminderController');

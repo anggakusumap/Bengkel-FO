@@ -136,4 +136,12 @@ class MasterDataJenisPerbaikanController extends Controller
 
         return redirect()->back()->with('messagehapus', 'Data Merk Berhasil dihapus');
     }
+
+    public function hapuscuy($id_detail_perbaikan)
+    {
+        $jenisperbaikan = Detailperbaikan::findOrFail($id_detail_perbaikan);
+        $jenisperbaikan->delete();
+
+        return redirect()->back()->with('messagehapus', 'Data Perbaikan Berhasil dihapus');
+    }
 }

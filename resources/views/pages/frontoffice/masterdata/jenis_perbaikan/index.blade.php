@@ -27,10 +27,12 @@
             <div class="card-header border-bottom">
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Global</a>
+                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
+                            aria-controls="overview" aria-selected="true">Master Perbaikan Global</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">Lokal</a>
+                        <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
+                            aria-controls="example" aria-selected="false">Master Perbaikan Lokal</a>
                     </li>
                 </ul>
             </div>
@@ -39,7 +41,7 @@
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                         <div class="row">
                             <div class="col-lg-3">
-                
+
                                 <!-- Illustrations -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
@@ -50,20 +52,23 @@
                                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 10rem;"
                                                 src="/backend/src/assets/img/freepik/tambahdata.png" alt="">
                                         </div>
-                                        <div class=" m-0 font-weight-bold text-primary" style="text-align: center">Pengajuan Tambah Data
+                                        <div class=" m-0 font-weight-bold text-primary" style="text-align: center">
+                                            Pengajuan Tambah Data
                                             Perbaikan
                                         </div>
                                         <hr class="my-2">
-                                        <p class="small" style="text-align: center">Anda ingin menambahkan data perbaikan yang tidak
+                                        <p class="small" style="text-align: center">Anda ingin menambahkan data
+                                            perbaikan yang tidak
                                             terdaftar?
                                             klik tombol <b>pengajuan</b>. </p>
                                         <div class="text-center">
                                             <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
                                                 data-target="#Modaltambah">
                                                 Ajukan Data Perbaikan
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-arrow-right ml-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-arrow-right ml-1">
                                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                                     <polyline points="12 5 19 12 12 19"></polyline>
                                                 </svg>
@@ -74,13 +79,14 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="card mb-4">
-                                    
+
                                     <div class="card-body">
                                         <div class="datatable">
                                             @if(session('messageberhasil'))
                                             <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
                                                 {{ session('messageberhasil') }}
-                                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                                <button class="close" type="button" data-dismiss="alert"
+                                                    aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
@@ -88,7 +94,8 @@
                                             @if(session('messagehapus'))
                                             <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
                                                 {{ session('messagehapus') }}
-                                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                                <button class="close" type="button" data-dismiss="alert"
+                                                    aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
@@ -97,29 +104,34 @@
                                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                                            style="width: 100%;">
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
+                                                            aria-describedby="dataTable_info" style="width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">Kode Jasa Perbaikan</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">Nama Jasa Perbaikan</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">Jenis Jasa Perbaikan</th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
                                                                         aria-label="Name: activate to sort column descending"
                                                                         style="width: 20px;">Harga</th>
                                                                 </tr>
@@ -132,11 +144,13 @@
                                                                     <td>{{ $item->kode_jenis_perbaikan }}</td>
                                                                     <td>{{ $item->nama_jenis_perbaikan }}</td>
                                                                     <td>{{ $item->group_jenis_perbaikan }}</td>
-                                                                    <td>Rp. {{ number_format($item->harga_jenis_perbaikan) }}</td>
-                                                                 
+                                                                    <td>Rp.
+                                                                        {{ number_format($item->harga_jenis_perbaikan) }}
+                                                                    </td>
+
                                                                 </tr>
                                                                 @empty
-                                                               
+
                                                                 @endforelse
                                                             </tbody>
                                                         </table>
@@ -150,60 +164,63 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
-                        <div class="card mb-4">
-                                    
-                            <div class="card-body">
-                                <div class="datatable">
 
-                                    {{-- SHOW ENTRIES --}}
-                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                                    width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                                    style="width: 100%;">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                                aria-label="Name: activate to sort column descending"
-                                                                style="width: 20px;">No</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                                aria-label="Name: activate to sort column descending"
-                                                                style="width: 20px;">Kode Jasa Perbaikan</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                                aria-label="Name: activate to sort column descending"
-                                                                style="width: 20px;">Nama Jasa Perbaikan</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                                aria-label="Name: activate to sort column descending"
-                                                                style="width: 20px;">Jenis Jasa Perbaikan</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                                aria-label="Name: activate to sort column descending"
-                                                                style="width: 20px;">Harga</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @forelse ($detail as $tes)
-                                                        <tr role="row" class="odd">
-                                                            <th scope="row" class="small" class="sorting_1">
-                                                                {{ $loop->iteration}}</th>
-                                                            <td>{{ $tes->Jenis_Perbaikan->kode_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->Jenis_Perbaikan->nama_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->Jenis_Perbaikan->group_jenis_perbaikan }}</td>
-                                                            <td>Rp. {{ number_format($tes->Jenis_Perbaikan->harga_jenis_perbaikan) }}</td>
-                                                         
-                                                        </tr>
-                                                        @empty
-                                                       
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                        <div class="datatable">
+
+                            {{-- SHOW ENTRIES --}}
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Kode Jasa Perbaikan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Nama Jasa Perbaikan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Jenis Jasa Perbaikan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Harga</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($detail as $tes)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td>{{ $tes->Jenis_Perbaikan->kode_jenis_perbaikan }}</td>
+                                                    <td>{{ $tes->Jenis_Perbaikan->nama_jenis_perbaikan }}</td>
+                                                    <td>{{ $tes->Jenis_Perbaikan->group_jenis_perbaikan }}</td>
+                                                    <td>Rp.
+                                                        {{ number_format($tes->Jenis_Perbaikan->harga_jenis_perbaikan) }}
+                                                    </td>
+                                                    <td><a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalhapus-{{ $tes->id_detail_perbaikan }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a></td>
+
+                                                </tr>
+                                                @empty
+
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -212,13 +229,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-       
     </div>
 </main>
 
@@ -286,8 +296,36 @@
         </div>
     </div>
 </div>
-
 </main>
+
+
+{{-- MODAL DELETE --}}
+@forelse ($detail as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_detail_perbaikan }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('hapusdetailperbaikan', $item->id_detail_perbaikan) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Perbaikan?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@empty
+
+@endforelse
 
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)
