@@ -141,6 +141,7 @@ class MasterDataJenisPerbaikanController extends Controller
     {
         $jenisperbaikan = Detailperbaikan::findOrFail($id_detail_perbaikan);
         $jenisperbaikan->delete();
+        // TES
 
         return redirect()->back()->with('messagehapus', 'Data Perbaikan Berhasil dihapus');
     }
