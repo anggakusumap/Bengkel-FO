@@ -191,10 +191,10 @@
                                                         <tr role="row" class="odd">
                                                             <th scope="row" class="small" class="sorting_1">
                                                                 {{ $loop->iteration}}</th>
-                                                            <td>{{ $tes->Jenis_Perbaikan->kode_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->Jenis_Perbaikan->nama_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->Jenis_Perbaikan->group_jenis_perbaikan }}</td>
-                                                            <td>Rp. {{ number_format($tes->Jenis_Perbaikan->harga_jenis_perbaikan) }}</td>
+                                                            <td>{{ $tes->kode_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->nama_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->group_jenis_perbaikan }}</td>
+                                                            <td>Rp. {{ number_format($tes->harga_jenis_perbaikan) }}</td>
                                                          
                                                         </tr>
                                                         @empty
