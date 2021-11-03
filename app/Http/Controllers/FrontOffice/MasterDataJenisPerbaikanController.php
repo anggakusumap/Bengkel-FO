@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\JenisPerbaikanrequest;
+use App\Model\FrontOffice\Detailperbaikan;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
@@ -23,10 +24,9 @@ class MasterDataJenisPerbaikanController extends Controller
         ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
         ->get();
 
-        $detail = MasterDataJenisKendaraan::with('Detailperbaikan')->where('status','=','Aktif')
-        ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)->get();
+        
 
-        // return $jenisperbaikan;
+        $detail = Detailperbaikan::with('Jenis_Perbaikan')->where('id_bengkel', Auth::user()->Bengkel->id_bengkel)->get();
 
         $id = MasterDataJenisPerbaikan::getId();
         foreach ($id as $value);
@@ -36,7 +36,7 @@ class MasterDataJenisPerbaikanController extends Controller
 
         $kode_jenis_perbaikan = 'JP-' . $idbaru . '/' . $blt;
 
-        return view('pages.frontoffice.masterdata.jenis_perbaikan.index', compact('jenisperbaikan', 'kode_jenis_perbaikan'));
+        return view('pages.frontoffice.masterdata.jenis_perbaikan.index', compact('jenisperbaikan', 'kode_jenis_perbaikan','detail'));
     }
 
     /**
