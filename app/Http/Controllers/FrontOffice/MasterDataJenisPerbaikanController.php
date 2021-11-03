@@ -18,11 +18,11 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function index()
     {
-        $jenisperbaikan = MasterDataJenisPerbaikan::with('Detailperbaikan.Jenis_Perbaikan')->where('status','=','Aktif')
+        $jenisperbaikan = MasterDataJenisPerbaikan::with('Detailperbaikan','Detailperbaikan.Jenis_Perbaikan')->where('status','=','Aktif')
         ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
         ->get();
 
-        return $jenisperbaikan->Detailperbaikan;
+        return $jenisperbaikan;
 
         $id = MasterDataJenisPerbaikan::getId();
         foreach ($id as $value);

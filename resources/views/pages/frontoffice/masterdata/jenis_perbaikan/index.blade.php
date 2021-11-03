@@ -154,22 +154,7 @@
                                     
                             <div class="card-body">
                                 <div class="datatable">
-                                    @if(session('messageberhasil'))
-                                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                                        {{ session('messageberhasil') }}
-                                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    @endif
-                                    @if(session('messagehapus'))
-                                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                                        {{ session('messagehapus') }}
-                                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    @endif
+
                                     {{-- SHOW ENTRIES --}}
                                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                         <div class="row">
@@ -202,14 +187,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($jenisperbaikan->Detailperbaikan as $item)
+                                                        @forelse ($jenisperbaikan->Detailperbaikan as $tes)
                                                         <tr role="row" class="odd">
                                                             <th scope="row" class="small" class="sorting_1">
                                                                 {{ $loop->iteration}}</th>
-                                                            <td>{{ $item->Jenis_Perbaikan->kode_jenis_perbaikan }}</td>
-                                                            <td>{{ $item->Jenis_Perbaikan->nama_jenis_perbaikan }}</td>
-                                                            <td>{{ $item->Jenis_Perbaikan->group_jenis_perbaikan }}</td>
-                                                            <td>Rp. {{ number_format($item->Jenis_Perbaikan->harga_jenis_perbaikan) }}</td>
+                                                            <td>{{ $tes->Jenis_Perbaikan->kode_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->Jenis_Perbaikan->nama_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->Jenis_Perbaikan->group_jenis_perbaikan }}</td>
+                                                            <td>Rp. {{ number_format($tes->Jenis_Perbaikan->harga_jenis_perbaikan) }}</td>
                                                          
                                                         </tr>
                                                         @empty

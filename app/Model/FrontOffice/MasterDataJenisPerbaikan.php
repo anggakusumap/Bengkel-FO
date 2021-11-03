@@ -33,7 +33,7 @@ class MasterDataJenisPerbaikan extends Model
 
     public function Detailperbaikan()
     {
-        return $this->hasOne(Detailperbaikan::class, 'id_jenis_perbaikan');
+        return $this->belongsTo(Detailperbaikan::class, 'id_jenis_perbaikan','id_jenis_perbaikan');
     }
 
 
