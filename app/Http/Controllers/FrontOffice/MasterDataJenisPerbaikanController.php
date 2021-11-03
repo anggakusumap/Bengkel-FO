@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\JenisPerbaikanrequest;
+use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataJenisPerbaikan;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,12 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function index()
     {
-        $jenisperbaikan = MasterDataJenisPerbaikan::with('Detailperbaikan','Detailperbaikan.Jenis_Perbaikan')->where('status','=','Aktif')
+        $jenisperbaikan = MasterDataJenisPerbaikan::where('status','=','Aktif')
         ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
         ->get();
+
+        $detail = MasterDataJenisKendaraan::with('Detailperbaikan')->where('status','=','Aktif')
+        ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)->get();
 
         // return $jenisperbaikan;
 
