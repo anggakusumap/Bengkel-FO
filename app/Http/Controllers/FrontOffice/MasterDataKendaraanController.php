@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\KendaraanRequest;
+use App\Model\FrontOffice\Detailkendaraan;
 use App\Model\FrontOffice\MasterDataJenisKendaraan;
 use App\Model\FrontOffice\MasterDataKendaraan;
 use App\Model\FrontOffice\MasterDataMerkKendaraan;
@@ -24,6 +25,8 @@ class MasterDataKendaraanController extends Controller
         ->where('status','=','Aktif')
         ->get();
 
+        $detail = Detailkendaraan::with('Kendaraan')->where('id_bengkel', Auth::user()->Bengkel->id_bengkel)->get();
+
         $jenis = MasterDataJenisKendaraan::get();
         $merk = MasterDataMerkKendaraan::get();
 
@@ -36,7 +39,7 @@ class MasterDataKendaraanController extends Controller
         $kode_kendaraan = 'KD-'.$blt.'/'.$idbaru;
 
 
-        return view('pages.frontoffice.masterdata.kendaraan.index', compact('kendaraan','jenis','merk','kode_kendaraan'));
+        return view('pages.frontoffice.masterdata.kendaraan.index', compact('kendaraan','jenis','merk','kode_kendaraan','detail'));
     }
 
     /**

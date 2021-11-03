@@ -196,10 +196,6 @@
                                                         rowspan="1" colspan="1" aria-sort="ascending"
                                                         aria-label="Name: activate to sort column descending"
                                                         style="width: 20px;">Harga</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -213,11 +209,6 @@
                                                     <td>Rp.
                                                         {{ number_format($tes->Jenis_Perbaikan->harga_jenis_perbaikan) }}
                                                     </td>
-                                                    <td><a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                        data-toggle="modal"
-                                                        data-target="#Modalhapus-{{ $tes->id_detail_perbaikan }}">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a></td>
 
                                                 </tr>
                                                 @empty
@@ -303,7 +294,7 @@
 </main>
 
 
-{{-- MODAL DELETE --}}
+{{-- MODAL DELETE
 @forelse ($detail as $item)
 <div class="modal fade" id="Modalhapus-{{ $item->id_detail_perbaikan }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -329,7 +320,7 @@
 
 @empty
 
-@endforelse
+@endforelse --}}
 
 {{-- Callback Modal Jika Validasi Error --}}
 @if (count($errors) > 0)

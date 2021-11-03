@@ -38,7 +38,7 @@ class MasterDataKendaraan extends Model
 
     public function Detail()
     {
-        return $this->hasOne(Detailkendaraan::class, 'id_jenis_kendaraan');
+        return $this->belongsTo(Detailkendaraan::class, 'id_kendaraan','id_kendaraan');
     }
 
     public static function getId(){
