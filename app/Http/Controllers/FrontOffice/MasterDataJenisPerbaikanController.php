@@ -22,7 +22,7 @@ class MasterDataJenisPerbaikanController extends Controller
         ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
         ->get();
 
-        // return $jenisperbaikan;
+        return $jenisperbaikan->Detailperbaikan;
 
         $id = MasterDataJenisPerbaikan::getId();
         foreach ($id as $value);
