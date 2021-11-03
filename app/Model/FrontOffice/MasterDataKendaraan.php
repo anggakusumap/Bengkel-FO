@@ -36,6 +36,11 @@ class MasterDataKendaraan extends Model
         return $this->belongsTo(MasterDataJenisKendaraan::class, 'id_jenis_kendaraan', 'id_jenis_kendaraan');
     }
 
+    public function Detail()
+    {
+        return $this->hasOne(Detailkendaraan::class, 'id_jenis_kendaraan');
+    }
+
     public static function getId(){
         // return $this->orderBy('id_sparepart')->take(1)->get();
         $getId = DB::table('tb_fo_master_kendaraan')->orderBy('id_kendaraan','DESC')->take(1)->get();

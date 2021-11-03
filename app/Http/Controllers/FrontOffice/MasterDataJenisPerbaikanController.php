@@ -18,7 +18,7 @@ class MasterDataJenisPerbaikanController extends Controller
      */
     public function index()
     {
-        $jenisperbaikan = MasterDataJenisPerbaikan::where('status','=','Aktif')
+        $jenisperbaikan = MasterDataJenisPerbaikan::with('Detailperbaikan')->where('status','=','Aktif')
         ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
         ->get();
 
