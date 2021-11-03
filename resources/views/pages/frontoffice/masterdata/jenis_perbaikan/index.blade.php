@@ -187,14 +187,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($jenisperbaikan->Detailperbaikan as $tes)
+                                                        @forelse ($jenisperbaikan as $tes)
                                                         <tr role="row" class="odd">
                                                             <th scope="row" class="small" class="sorting_1">
                                                                 {{ $loop->iteration}}</th>
-                                                            <td>{{ $tes->kode_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->nama_jenis_perbaikan }}</td>
-                                                            <td>{{ $tes->group_jenis_perbaikan }}</td>
-                                                            <td>Rp. {{ number_format($tes->harga_jenis_perbaikan) }}</td>
+                                                            <td>{{ $tes->Detailperbaikan->kode_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->Detailperbaikan->nama_jenis_perbaikan }}</td>
+                                                            <td>{{ $tes->Detailperbaikan->group_jenis_perbaikan }}</td>
+                                                            <td>Rp. {{ number_format($tes->Detailperbaikan->harga_jenis_perbaikan) }}</td>
                                                          
                                                         </tr>
                                                         @empty
