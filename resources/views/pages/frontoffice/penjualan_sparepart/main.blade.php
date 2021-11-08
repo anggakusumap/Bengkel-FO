@@ -124,11 +124,11 @@
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button" data-original-title="Hapus"
+                                                {{-- <a href="" class="btn btn-danger btn-datatable" type="button" data-original-title="Hapus"
                                                     data-toggle="modal"
                                                     data-target="#Modalhapus-{{ $item->id_penjualan_sparepart }}">
                                                     <i class="fas fa-trash"></i>
-                                                </a>
+                                                </a> --}}
                                                 @endif
                                             </td>
                                         </tr>
