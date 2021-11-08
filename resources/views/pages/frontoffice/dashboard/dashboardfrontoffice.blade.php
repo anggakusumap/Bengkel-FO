@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <div class="row">
             <div class="col-xl-4 col-md-6 mb-4">
                 <!-- Dashboard info widget 1-->
@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </main>
 
 <script>
