@@ -22,7 +22,7 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai'])->where('id_bengkel',Auth::user()->id_bengkel)->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai'])->where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_penjualan_sparepart', 'DESC')->get();
         $blt = date('D, d/m/Y');
         return view('pages.frontoffice.penjualan_sparepart.main', compact('blt', 'penjualan'));
     }
@@ -36,7 +36,7 @@ class PenjualanSparepartController extends Controller
     {
         $customer = CustomerBengkel::all();
         // $sparepart = DetailSparepart::with('Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
-        $sparepart = DetailSparepart::with('Sparepart','Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
+        $sparepart = DetailSparepart::with('Sparepart', 'Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
 
 
         // ->where('nama_jabatan', '!=', 'Owner')->get();
@@ -50,7 +50,7 @@ class PenjualanSparepartController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $kode_penjualan_sparepart = 'PS-' . $blt . '/' . $idbaru;
+        $kode_penjualan_sparepart = 'PS-' . $blt . '/' . rand(1000, 9999);
 
 
         return view('pages.frontoffice.penjualan_sparepart.create', compact('customer', 'sparepart', 'kode_penjualan_sparepart', 'today'));
@@ -142,18 +142,18 @@ class PenjualanSparepartController extends Controller
     public function edit($id_penjualan_sparepart)
     {
         $customer = CustomerBengkel::all();
-        $sparepart = DetailSparepart::with('Sparepart','Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
+        $sparepart = DetailSparepart::with('Sparepart', 'Kartugudangpenjualan')->where('qty_stok', '>', 0)->get();
         $today = Carbon::today();
         $penjualan = PenjualanSparepart::with('Detailsparepart', 'Customer')->findOrFail($id_penjualan_sparepart);
 
 
 
-        for($i = 0;  $i < count($penjualan->Detailsparepart); $i++ ){
-            for($j = 0;  $j < count($sparepart); $j++ ){
-                if ($penjualan->Detailsparepart[$i]->id_sparepart == $sparepart[$j]->id_sparepart ){
+        for ($i = 0; $i < count($penjualan->Detailsparepart); $i++) {
+            for ($j = 0; $j < count($sparepart); $j++) {
+                if ($penjualan->Detailsparepart[$i]->id_sparepart == $sparepart[$j]->id_sparepart) {
                     $sparepart[$j]->jumlah = $penjualan->Detailsparepart[$i]->pivot->jumlah;
                     $sparepart[$j]->harga = $penjualan->Detailsparepart[$i]->pivot->harga;
-                   };
+                };
             }
         }
 
