@@ -22,7 +22,7 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner'){
+        if(Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->pegawai->jabatan->nama_jabatan == 'Front Office'){
             $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai','Cabang'])->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', '=', null)->orderBy('id_penjualan_sparepart', 'DESC')->get();
         }else{
             $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai','Cabang'])->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->orderBy('id_penjualan_sparepart', 'DESC')->get();
