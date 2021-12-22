@@ -27,7 +27,8 @@ class PenjualanSparepart extends Model
         'status_bayar',
         'total_bayar',
         'id_bengkel',
-        'id_pegawai'
+        'id_pegawai',
+        'id_cabang'
     ];
 
     protected $hidden = [
@@ -58,6 +59,8 @@ class PenjualanSparepart extends Model
     {
         return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
+
+   
 
     public function Detailsparepart()
     {
