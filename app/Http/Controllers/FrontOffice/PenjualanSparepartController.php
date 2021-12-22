@@ -81,6 +81,13 @@ class PenjualanSparepartController extends Controller
         $penjualan->status_bayar = 'Belum Bayar';
         $penjualan->id_pegawai = $request['id_pegawai'] = Auth::user()->pegawai->id_pegawai;
         $penjualan->id_bengkel = Auth::user()->id_bengkel;
+        
+        if(Auth::user()->pegawai->cabang != null ){
+            $penjualan->id_cabang = Auth::user()->pegawai->cabang->id_cabang;
+        }else{
+            
+        }
+
 
         $temp = 0;
         foreach ($request->sparepart as $key => $item) {
