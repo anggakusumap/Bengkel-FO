@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Model\Inventory\Sparepart;
 use App\Model\Kepegawaian\Pegawai;
 use App\Model\SingleSignOn\Bengkel;
+use App\Model\SingleSignOn\Cabang;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -60,7 +61,10 @@ class PenjualanSparepart extends Model
         return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
 
-   
+    public function Cabang()
+    {
+        return $this->belongsTo(Cabang::class, 'id_cabang', 'id_cabang');
+    }
 
     public function Detailsparepart()
     {

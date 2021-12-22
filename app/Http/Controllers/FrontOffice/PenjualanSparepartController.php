@@ -22,7 +22,7 @@ class PenjualanSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai'])->where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        $penjualan = PenjualanSparepart::with(['Customer', 'Pegawai'])->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->orderBy('id_penjualan_sparepart', 'DESC')->get();
         $blt = date('D, d/m/Y');
         return view('pages.frontoffice.penjualan_sparepart.main', compact('blt', 'penjualan'));
     }
