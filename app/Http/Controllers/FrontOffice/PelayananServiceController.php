@@ -21,10 +21,14 @@ class PelayananServiceController extends Controller
      */
     public function index()
     {
-        $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])
-        ->where('id_bengkel', Auth::user()->id_bengkel)->orderBy('id_service_advisor', 'DESC')->get();
-       
-        
+        if(Auth::user()->pegawai->cabang == null){
+            $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])
+                ->where('id_bengkel', Auth::user()->id_bengkel)->where('id_cabang','=', null)->orderBy('id_service_advisor', 'DESC')->get();
+        }else{
+            $pelayanan = PenerimaanService::with(['customer_bengkel', 'kendaraan', 'pegawai', 'mekanik', 'pitstop'])
+                ->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->orderBy('id_service_advisor', 'DESC')->get();
+        }
+           
         $pitstop = MasterDataPitstop::where('id_bengkel', Auth::user()->id_bengkel)->get();
         // return $pelayanan;
         $now = Carbon::now();
