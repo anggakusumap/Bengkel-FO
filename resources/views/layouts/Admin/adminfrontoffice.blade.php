@@ -142,7 +142,7 @@
                                 <a class="nav-link" href="{{ route('pitstop.index')}}">
                                     Pit Stop
                                 </a>
-                                <a class="nav-link" href="{{ route('reminder.index')}}">
+                                <a class="nav-link" href="{{ route('diskon.index')}}">
                                     Diskon
                                 </a>
                             </nav>
