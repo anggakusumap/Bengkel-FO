@@ -142,9 +142,9 @@
                                 <a class="nav-link" href="{{ route('pitstop.index')}}">
                                     Pit Stop
                                 </a>
-                                {{-- <a class="nav-link" href="{{ route('reminder.index')}}">
-                                    Reminder
-                                </a> --}}
+                                <a class="nav-link" href="{{ route('reminder.index')}}">
+                                    Diskon
+                                </a>
                             </nav>
                         </div>
 
