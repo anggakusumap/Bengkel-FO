@@ -49,13 +49,9 @@ class MasterDataDiskonController extends Controller
     public function store(Diskonrequest $request)
     {
         $request['id_bengkel'] = Auth::user()->id_bengkel;
+        $data = $request->all();
 
-        $diskon = new MasterDataDiskon;
-        $diskon->kode_diskon = $request->kode_diskon;
-        $diskon->nama_diskon = $request->nama_diskon;
-        $diskon->jumlah_diskon = $request->jumlah_diskon;
-
-        $diskon->save();
+        MasterDataDiskon::create($data);
         return redirect()->route('diskon.index')->with('messageberhasil', 'Data Diskon Berhasil ditambahkan');
     }
 
