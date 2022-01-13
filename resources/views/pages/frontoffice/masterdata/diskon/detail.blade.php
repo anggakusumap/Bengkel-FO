@@ -15,11 +15,10 @@
 
                             </div>
                         </h1>
-                       
+
                     </div>
                     <div class="col-12 col-xl-auto">
-                        <a href="{{ route('diskon.index') }}"
-                            class="btn btn-sm btn-light text-primary">Kembali</a>
+                        <a href="{{ route('diskon.index') }}" class="btn btn-sm btn-light text-primary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -46,12 +45,21 @@
                         <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
                             placeholder="Input Tahun Gaji" value="{{ $item->jumlah_diskon }}%" readonly />
                     </div>
+                    @if ($item->status_diskon == 'Diskon Khusus')
+                    <div class="form-group col-md-4">
+                        <label class="small mb-1" for="bulan_gaji">Minimal Order</label>
+                        <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
+                            placeholder="Input Tahun Gaji" value="{{ $item->min_order }}%" readonly />
+                    </div>
+                    @else
+
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-
+    @if ($item->status_diskon == 'Diskon Umum')
     <div class="container">
         <div class="card card-collapsable">
             <a class="card-header" href="#collapseCardExample" data-toggle="collapse" role="button" aria-expanded="true"
@@ -90,7 +98,7 @@
                                                 <td>{{ $detail->jenis_sparepart }}</td>
                                             </tr>
                                             @empty
-                                                
+
                                             @endforelse
 
                                         </tbody>
@@ -103,6 +111,11 @@
             </div>
         </div>
     </div>
+    @else
+
+    @endif
+
+
 </main>
 
 @endsection
