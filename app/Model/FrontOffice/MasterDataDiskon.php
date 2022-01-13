@@ -14,7 +14,7 @@ class MasterDataDiskon extends Model
     protected $primaryKey = 'id_diskon';
 
     protected $fillable = [
-        'id_bengkel', 'nama_diskon', 'jumlah_diskon', 'kode_diskon'
+        'id_bengkel', 'nama_diskon', 'jumlah_diskon', 'kode_diskon','status_diskon'
     ];
 
     protected $hidden = [

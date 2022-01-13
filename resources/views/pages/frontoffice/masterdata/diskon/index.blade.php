@@ -211,6 +211,20 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="row" id="radio1">
+                                    <div class="col-md-6">
+                                        <input class="mr-1" value="Diskon Khusus" type="radio"
+                                            name="status_diskon" checked>Diskon Khusus
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="mr-1" value="Diskon Umum" type="radio"
+                                            name="status_diskon">Diskon Umum
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="small mb-1" for="kode_diskon">Kode Diskon</label>
                             <input class="form-control" name="kode_diskon" type="text" id="kode_diskon"
@@ -228,7 +242,7 @@
                             <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
                                 placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}" required />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="KelompokTransaksiStyle" style="display:none">
                             <label class="small mb-1" for="id_jenis_sparepart">Pilih Kelompok
                                 Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
@@ -411,7 +425,22 @@
     $(document).ready(function () {
         $('#validasierror').click();
         $('#dataTablePegawai').DataTable()
+        $('#dataTableVoucher').DataTable()
+        
+        $("#radio1").change(function () {
+            var value = $("input[name='status_diskon']:checked").val();
+
+            if (value == 'Diskon Umum') {
+                $('#KelompokTransaksiStyle').show()
+            } else {
+                $('#KelompokTransaksiStyle').hide()
+            }
+
+
+        });
+        
     });
+
 
     function tambahkelompok(event) {
         var Terpilih = 'Kelompok Sparepart Telah Dipilih'
