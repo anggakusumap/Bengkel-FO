@@ -36,105 +36,160 @@
             <div class="card-body">
                 <div class="tab-content" id="cardTabContent">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                        <div class="datatable">
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Kode Diskon</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Nama Diskon</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Jumlah Diskon</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Actions: activate to sort column ascending"
-                                                        style="width: 77px;">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($diskon as $item)
-                                                <tr role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->kode_diskon }}</td>
-                                                    <td>{{ $item->nama_diskon }}</td>
-                                                    <td>{{ $item->jumlah_diskon }} %</td>
-                                                    <td>
-                                                        <a href="{{ route('diskon.show', $item->id_diskon) }}"
-                                                            class="btn btn-secondary btn-datatable"
-                                                            data-toggle="tooltip" data-placement="top" title=""
-                                                            data-original-title="Detail">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-primary btn-datatable" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_diskon }}">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_diskon }}">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                @empty
+                        <div class="row">
 
-                                                @endforelse
-                                            </tbody>
-                                        </table>
+
+                            <div class="col-lg-3">
+
+                                <!-- Illustrations -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Pengajuan</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 10rem;"
+                                                src="/backend/src/assets/img/freepik/tambahdata.png" alt="">
+                                        </div>
+                                        <div class=" m-0 font-weight-bold text-primary" style="text-align: center">
+                                            Tambah Data Diskon
+                                        </div>
+                                        <hr class="my-2">
+                                        <p class="small" style="text-align: center">Anda ingin menambahkan data
+                                            diskon?
+                                            klik tombol <b>Tambah</b>. </p>
+                                        <div class="text-center">
+                                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                                                data-target="#Modaltambah">
+                                                Tambah
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-arrow-right ml-1">
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
-                        <div class="datatable">
-                            {{-- SHOW ENTRIES --}}
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTableVoucher"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
-                                            <thead>
-                                                <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Diskon</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Voucher</th>
+                            <div class="col-lg-9">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="datatable">
+                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTable" width="100%" cellspacing="0" role="grid"
+                                                            aria-describedby="dataTable_info" style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">No</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">Kode Diskon</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">Nama Diskon</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">Jumlah Diskon</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Actions: activate to sort column ascending"
+                                                                        style="width: 77px;">Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse ($diskon as $item)
+                                                                <tr role="row" class="odd">
+                                                                    <th scope="row" class="small" class="sorting_1">
+                                                                        {{ $loop->iteration}}</th>
+                                                                    <td>{{ $item->kode_diskon }}</td>
+                                                                    <td>{{ $item->nama_diskon }}</td>
+                                                                    <td>{{ $item->jumlah_diskon }} %</td>
+                                                                    <td>
+                                                                        <a href="{{ route('diskon.show', $item->id_diskon) }}"
+                                                                            class="btn btn-secondary btn-datatable"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="" data-original-title="Detail">
+                                                                            <i class="fa fa-eye"></i>
+                                                                        </a>
+                                                                        <a href="" class="btn btn-primary btn-datatable"
+                                                                            type="button" data-toggle="modal"
+                                                                            data-target="#Modaledit-{{ $item->id_diskon }}">
+                                                                            <i class="fas fa-edit"></i>
+                                                                        </a>
+                                                                        <a href="" class="btn btn-danger btn-datatable"
+                                                                            type="button" data-toggle="modal"
+                                                                            data-target="#Modalhapus-{{ $item->id_diskon }}">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                @empty
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="example" role="tabpanel"
+                                        aria-labelledby="example-tab">
+                                        <div class="datatable">
+                                            {{-- SHOW ENTRIES --}}
+                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered table-hover dataTable"
+                                                            id="dataTableVoucher" width="100%" cellspacing="0"
+                                                            role="grid" aria-describedby="dataTable_info"
+                                                            style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">No</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">Diskon</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 20px;">Voucher</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
 
 
-                                            </tbody>
-                                        </table>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,8 +229,8 @@
                                 placeholder="Input Nama Diskon" value="{{ old('nama_diskon') }}" required>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon (%)</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon
+                                (%)</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
                                 placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}" required />
                         </div>
@@ -236,8 +291,8 @@
                                 value="{{ $item->nama_diskon }}" required></input>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon (%)</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon
+                                (%)</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
                                 value="{{ $item->jumlah_diskon }}" required></input>
                         </div>
