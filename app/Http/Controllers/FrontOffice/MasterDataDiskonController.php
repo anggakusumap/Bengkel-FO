@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\Diskonrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataDiskon;
+use App\Model\Inventory\Jenissparepart;
 use Illuminate\Support\Facades\Auth;
 
 class MasterDataDiskonController extends Controller
@@ -25,9 +26,10 @@ class MasterDataDiskonController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
+        $jenis_spareaprt = Jenissparepart::get();
         $kode_diskon = 'E-BengkelDisc' . '/' . $blt . '-' . $idbaru;
 
-        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon', 'kode_diskon'));
+        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon', 'kode_diskon','jenis_sparepart'));
     }
 
     /**
