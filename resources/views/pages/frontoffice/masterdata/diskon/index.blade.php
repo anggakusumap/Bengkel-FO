@@ -211,20 +211,20 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
-                        
-                            <div class="form-group">
-                                <div class="row" id="radio1">
-                                    <div class="col-md-6">
-                                        <input class="mr-1" value="Diskon Khusus" type="radio"
-                                            name="status_diskon" checked>Diskon Khusus
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="mr-1" value="Diskon Umum" type="radio"
-                                            name="status_diskon">Diskon Umum
-                                    </div>
+
+                        <div class="form-group">
+                            <div class="row" id="radio1">
+                                <div class="col-md-6">
+                                    <input class="mr-1" value="Diskon Khusus" type="radio" name="status_diskon"
+                                        checked>Diskon Khusus
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="mr-1" value="Diskon Umum" type="radio" name="status_diskon">Diskon
+                                    Umum
                                 </div>
                             </div>
-                  
+                        </div>
+
                         <div class="form-group">
                             <label class="small mb-1" for="kode_diskon">Kode Diskon</label>
                             <input class="form-control" name="kode_diskon" type="text" id="kode_diskon"
@@ -438,7 +438,7 @@
 
 
         });
-        
+
     });
 
 
@@ -498,66 +498,123 @@
         var kode_diskon = $('#kode_diskon').val()
         var nama_diskon = $('#nama_diskon').val()
         var jumlah_diskon = $('#jumlah_diskon').val()
-        // var masa_perolehan_akhir = $('#masa_perolehan_akhir').val()
+        var radio = $('#radio1').find("input[name='status_diskon']:checked").val()
 
-        var data = {
-            _token: _token,
-            kode_diskon: kode_diskon,
-            nama_diskon: nama_diskon,
-            jumlah_diskon: jumlah_diskon,
-            jenis: jenis
+        if (radio == 'Diskon Khusus') {
+
+            var data = {
+                _token: _token,
+                kode_diskon: kode_diskon,
+                nama_diskon: nama_diskon,
+                jumlah_diskon: jumlah_diskon,
+                jenis: jenis,
+                status_diskon: radio
+            }
+            if (nama_diskon == '' | jumlah_diskon == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terdapat Field Kosong!',
+                })
+            } else if (jenis == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Kelompok Sparepart belum dipilih!',
+                })
+            } else {
+                var sweet_loader =
+                    '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
+                $.ajax({
+                    method: 'post',
+                    url: "/frontoffice/diskon",
+                    data: data,
+                    beforeSend: function () {
+                        swal.fire({
+                            title: 'Mohon Tunggu!',
+                            html: 'Data Diskon Sedang Diproses...',
+                            showConfirmButton: false,
+                            onRender: function () {
+                                // there will only ever be one sweet alert open.
+                                $('.swal2-content').prepend(sweet_loader);
+                            }
+                        });
+                    },
+                    success: function (response) {
+                        swal.fire({
+                            icon: 'success',
+                            showConfirmButton: false,
+                            html: '<h5>Success!</h5>'
+                        });
+                        window.location.href = '/frontoffice/diskon/'
+                    },
+                    error: function (error) {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            html: error.responseJSON.message
+                        });
+                    }
+                });
+            }
+
+        } else if (radio == 'Diskon Umum') {
+            var data = {
+                _token: _token,
+                kode_diskon: kode_diskon,
+                nama_diskon: nama_diskon,
+                jumlah_diskon: jumlah_diskon,
+                status_diskon: radio
+            }
+            if (nama_diskon == '' | jumlah_diskon == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terdapat Field Kosong!',
+                })
+            
+            } else {
+                var sweet_loader =
+                    '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
+                $.ajax({
+                    method: 'post',
+                    url: "/frontoffice/diskon",
+                    data: data,
+                    beforeSend: function () {
+                        swal.fire({
+                            title: 'Mohon Tunggu!',
+                            html: 'Data Diskon Sedang Diproses...',
+                            showConfirmButton: false,
+                            onRender: function () {
+                                // there will only ever be one sweet alert open.
+                                $('.swal2-content').prepend(sweet_loader);
+                            }
+                        });
+                    },
+                    success: function (response) {
+                        swal.fire({
+                            icon: 'success',
+                            showConfirmButton: false,
+                            html: '<h5>Success!</h5>'
+                        });
+                        window.location.href = '/frontoffice/diskon/'
+                    },
+                    error: function (error) {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            html: error.responseJSON.message
+                        });
+                    }
+                });
+            }
+
         }
 
 
 
-        if (nama_diskon == '' | jumlah_diskon == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Terdapat Field Kosong!',
-            })
-        } else if (jenis == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Kelompok Sparepart belum dipilih!',
-            })
-        } else {
-            var sweet_loader =
-                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
-
-            $.ajax({
-                method: 'post',
-                url: "/frontoffice/diskon",
-                data: data,
-                beforeSend: function () {
-                    swal.fire({
-                        title: 'Mohon Tunggu!',
-                        html: 'Data Diskon Sedang Diproses...',
-                        showConfirmButton: false,
-                        onRender: function () {
-                            // there will only ever be one sweet alert open.
-                            $('.swal2-content').prepend(sweet_loader);
-                        }
-                    });
-                },
-                success: function (response) {
-                    swal.fire({
-                        icon: 'success',
-                        showConfirmButton: false,
-                        html: '<h5>Success!</h5>'
-                    });
-                    window.location.href = '/frontoffice/diskon/'
-                },
-                error: function (error) {
-                    swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        html: error.responseJSON.message
-                    });
-                }
-            });
-        }
     }
 
 </script>
