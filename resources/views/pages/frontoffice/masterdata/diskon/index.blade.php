@@ -85,6 +85,11 @@
                                             <td>{{ $item->nama_diskon }}</td>
                                             <td>{{ $item->jumlah_diskon }} %</td>
                                             <td>
+                                                <a href="{{ route('diskon.show', $item->id_diskon) }}"
+                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_diskon }}">
                                                     <i class="fas fa-edit"></i>
@@ -97,11 +102,7 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">
-                                                Data Diskon Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
                                     </tbody>
                                 </table>

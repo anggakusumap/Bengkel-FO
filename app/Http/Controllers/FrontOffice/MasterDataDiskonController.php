@@ -73,9 +73,11 @@ class MasterDataDiskonController extends Controller
      * @param  \App\MasterDataDiskon  $masterDataDiskon
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterDataDiskon $masterDataDiskon)
+    public function show($id_diskon)
     {
-        //
+        $item = MasterDataDiskon::with('Detail')->find($id_diskon);
+        return view('pages.frontoffice.masterdata.diskon.detail')->compact('item');
+    
     }
 
     /**
