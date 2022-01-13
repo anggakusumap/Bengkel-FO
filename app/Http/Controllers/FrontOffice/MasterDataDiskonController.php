@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\Diskonrequest;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataDiskon;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDataDiskonController extends Controller
 {
@@ -18,7 +19,15 @@ class MasterDataDiskonController extends Controller
     {
         $diskon = MasterDataDiskon::get();
 
-        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon'));
+        $id = MasterDataDiskon::getId();
+        foreach ($id as $value);
+        $idlama = $value->id_diskon;
+        $idbaru = $idlama + 1;
+        $blt = date('m');
+
+        $kode_diskon = 'E-BengkelDisc' . '/' . $blt . '-' . $idbaru;
+
+        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon', 'kode_diskon'));
     }
 
     /**
@@ -39,10 +48,11 @@ class MasterDataDiskonController extends Controller
      */
     public function store(Diskonrequest $request)
     {
+        $request['id_bengkel'] = Auth::user()->id_bengkel;
         $data = $request->all();
 
         MasterDataDiskon::create($data);
-        return redirect()->route('diskon.index')->with('messageberhasil', 'Data Jenis Kendaraan Berhasil ditambahkan');
+        return redirect()->route('diskon.index')->with('messageberhasil', 'Data Diskon Berhasil ditambahkan');
     }
 
     /**
@@ -79,10 +89,9 @@ class MasterDataDiskonController extends Controller
         $diskon = MasterDataDiskon::findOrFail($id_diskon);
         $diskon->nama_diskon = $request->nama_diskon;
         $diskon->jumlah_diskon = $request->jumlah_diskon;
-        $diskon->tanggal_mulai = $request->tanggal_mulai;
-        $diskon->tanggal_selesai = $request->tanggal_selesai;
 
         $diskon->update();
+
         return redirect()->back()->with('messageberhasil', 'Data Diskon Berhasil diubah');
     }
 
@@ -97,6 +106,6 @@ class MasterDataDiskonController extends Controller
         $diskon = MasterDataDiskon::findOrFail($id_diskon);
         $diskon->delete();
 
-        return redirect()->back()->with('messagehapus', 'Data Jenis Diskon Berhasil dihapus');
+        return redirect()->back()->with('messagehapus', 'Data Diskon Diskon Berhasil dihapus');
     }
 }

@@ -26,8 +26,6 @@ class Diskonrequest extends FormRequest
         return [
             'nama_diskon' => 'required',
             'jumlah_diskon' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
         ];
     }
 }

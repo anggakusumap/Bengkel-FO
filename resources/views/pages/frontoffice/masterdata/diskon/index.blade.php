@@ -25,7 +25,8 @@
         <div class="card mb-4">
             <div class="card card-header-actions">
                 <div class="card-header">List Diskon
-                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#Modaltambah">Tambah
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">Tambah
                         Data</button>
                 </div>
             </div>
@@ -62,19 +63,15 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
+                                                style="width: 20px;">Kode Diskon</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
                                                 style="width: 20px;">Nama Diskon</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jumlah Diskon (%)</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal Mulai</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Tanggal Selesai</th>
+                                                style="width: 20px;">Jumlah Diskon</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
@@ -84,17 +81,17 @@
                                         @forelse ($diskon as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td>{{ $item->kode_diskon }}</td>
                                             <td>{{ $item->nama_diskon }}</td>
-                                            <td>{{ $item->jumlah_diskon }}</td>
-                                            <td>{{ $item->tanggal_mulai }}</td>
-                                            <td>{{ $item->tanggal_selesai }}</td>
+                                            <td>{{ $item->jumlah_diskon }} %</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal" data-target="#Modaledit-{{ $item->id_diskon }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_diskon }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_diskon }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -116,13 +113,14 @@
         </div>
     </div>
 
-    {{-- MODAL TAMBAH --}}
+
+    {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
     <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Diskon</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -133,40 +131,24 @@
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_diskon">Nama Diskon <span style="color: red">*</span></label>
+                            <label class="small mb-1" for="kode_diskon">Kode Diskon</label>
+                            <input class="form-control" name="kode_diskon" type="text" id="kode_diskon"
+                                placeholder="Input Kode Diskon" value="{{ $kode_diskon }}" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="nama_diskon">Nama Diskon</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
                             <input class="form-control" name="nama_diskon" type="text" id="nama_diskon"
-                                placeholder="Input Nama Diskon" value="{{ old('nama_diskon') }}"
-                                class="form-control @error('nama_diskon') is-invalid @enderror">
-                            @error('nama_diskon')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                placeholder="Input Nama Diskon" value="{{ old('nama_diskon') }}" required>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jumlah_diskon">Jumlah Diskon (%) <span style="color: red">*</span></label>
-                            <input class="form-control" name="jumlah_diskon" type="text" id="jumlah_diskon"
-                                placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}"
-                                class="form-control @error('jumlah_diskon') is-invalid @enderror">
-                            @error('jumlah_diskon')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="tanggal_mulai">Tanggal Mulai <span style="color: red">*</span> </label>
-                            <input class="form-control" name="tanggal_mulai" type="date" id="tanggal_mulai"
-                                placeholder="Tanggal Mulai" value="{{ old('tanggal_mulai') }}"
-                                class="form-control @error('tanggal_mulai') is-invalid @enderror"></input>
-                            @error('tanggal_mulai')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="tanggal_selesai">Tanggal Selesai <span style="color: red">*</span> </label>
-                            <input class="form-control" name="tanggal_selesai" type="date" id="tanggal_selesai"
-                                placeholder="Tanggal Selesai" value="{{ old('tanggal_selesai') }}"
-                                class="form-control @error('tanggal_selesai') is-invalid @enderror"></input>
-                            @error('tanggal_selesai')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon (%)</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
+                                placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}" required />
                         </div>
                     </div>
-                    @if (count($errors) > 0)
-                    @endif
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="Submit">Tambah</button>
@@ -176,13 +158,13 @@
         </div>
     </div>
 
-    {{-- MODAL EDIT --}}
+    {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
     @forelse ($diskon as $item)
     <div class="modal fade" id="Modaledit-{{ $item->id_diskon }}" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-light">
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Data Diskon</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
@@ -190,42 +172,21 @@
                 <form action="{{ route('diskon.update', $item->id_diskon) }}" method="POST">
                     @method('PUT')
                     @csrf
-                    
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="nama_diskon">Nama Diskon</label>
+                            <label class="small mb-1 mr-1" for="nama_diskon">Nama Diskon</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
                             <input class="form-control" name="nama_diskon" type="text" id="nama_diskon"
-                                placeholder="Input Nama Diskon" value="{{ $item->nama_diskon }}"
-                                class="form-control @error('nama_diskon') is-invalid @enderror">
-                            @error('nama_diskon')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                                value="{{ $item->nama_diskon }}" required></input>
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="jumlah_diskon">Jumlah Diskon (%)</label>
-                            <input class="form-control" name="jumlah_diskon" type="text" id="jumlah_diskon"
-                                placeholder="Input Jumlah Diskon" value="{{ $item->jumlah_diskon }}"
-                                class="form-control @error('jumlah_diskon') is-invalid @enderror">
-                            @error('jumlah_diskon')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="tanggal_mulai">Tanggal Mulai</label>
-                            <input class="form-control" name="tanggal_mulai" type="date" id="tanggal_mulai"
-                                placeholder="Tanggal Mulai" value="{{ $item->tanggal_mulai }}"
-                                class="form-control @error('tanggal_mulai') is-invalid @enderror"></input>
-                            @error('tanggal_mulai')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1" for="tanggal_selesai">Tanggal Selesai</label>
-                            <input class="form-control" name="tanggal_selesai" type="date" id="tanggal_selesai"
-                                placeholder="Tanggal Selesai" value="{{ $item->tanggal_selesai }}"
-                                class="form-control @error('tanggal_selesai') is-invalid @enderror"></input>
-                            @error('tanggal_selesai')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
+                            <label class="small mb-1 mr-1" for="jumlah_diskon">Jumlah Diskon (%)</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
+                                value="{{ $item->jumlah_diskon }}" required></input>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -240,13 +201,13 @@
 
     @endforelse
 
-    {{-- MODAL DELETE --}}
+    {{-- MODAL DELETE ------------------------------------------------------------------------------}}
     @forelse ($diskon as $item)
     <div class="modal fade" id="Modalhapus-{{ $item->id_diskon }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger-soft">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
@@ -254,7 +215,8 @@
                 <form action="{{ route('diskon.destroy', $item->id_diskon) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Diskon {{ $item->nama_diskon }}?</div>
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Diskon dengan Kode {{ $item->kode_diskon }}
+                        ?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -263,7 +225,6 @@
             </div>
         </div>
     </div>
-
     @empty
 
     @endforelse
