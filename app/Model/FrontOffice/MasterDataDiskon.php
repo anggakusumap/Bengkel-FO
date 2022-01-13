@@ -2,6 +2,7 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Model\Inventory\Jenissparepart;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,10 @@ class MasterDataDiskon extends Model
     ];
 
     public $timestamps = false;
+
+    public function Detail(){
+        return $this->belongsToMany(Jenissparepart::class,'tb_fo_detail_diskon','id_diskon','id_jenis_sparepart');
+    }
 
     public static function getId()
     {

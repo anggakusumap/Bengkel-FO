@@ -50,11 +50,21 @@ class MasterDataDiskonController extends Controller
      */
     public function store(Diskonrequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $data = $request->all();
+        $diskon = new MasterDataDiskon;
+        $diskon->kode_diskon = $request->kode_diskon;
+        $diskon->nama_diskon = $request->nama_diskon;
+        $diskon->jumlah_diskon = $request->jumlah_diskon;
+        $diskon->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+        
+        $diskon->save();
+        $diskon->Detail()->sync($request->jenis);
+        return $diskon;
+        
+        // $request['id_bengkel'] = Auth::user()->id_bengkel;
+        // $data = $request->all();
 
-        MasterDataDiskon::create($data);
-        return redirect()->route('diskon.index')->with('messageberhasil', 'Data Diskon Berhasil ditambahkan');
+        // MasterDataDiskon::create($data);
+        // return redirect()->route('diskon.index')->with('messageberhasil', 'Data Diskon Berhasil ditambahkan');
     }
 
     /**
