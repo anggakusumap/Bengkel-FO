@@ -51,26 +51,26 @@ class MasterDataDiskonController extends Controller
     public function store(Diskonrequest $request)
     {
 
-        if($request->status_diskon == 'Diskon Khusus'){
-            $diskon = new MasterDataDiskon;
-            $diskon->kode_diskon = $request->kode_diskon;
-            $diskon->nama_diskon = $request->nama_diskon;
-            $diskon->jumlah_diskon = $request->jumlah_diskon;
-            $diskon->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-            $diskon->status_diskon = 'Diskon Khusus';
-            
-            $diskon->save();
-            $diskon->Detail()->sync($request->jenis);
-            return $diskon;
-
-        }else if($request->status_diskon == 'Diskon Umum'){
-            
+        if($request->status_diskon == 'Diskon Umum'){
             $diskon = new MasterDataDiskon;
             $diskon->kode_diskon = $request->kode_diskon;
             $diskon->nama_diskon = $request->nama_diskon;
             $diskon->jumlah_diskon = $request->jumlah_diskon;
             $diskon->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
             $diskon->status_diskon = 'Diskon Umum';
+            
+            $diskon->save();
+            $diskon->Detail()->sync($request->jenis);
+            return $diskon;
+
+        }else if($request->status_diskon == 'Diskon Khusus'){
+            
+            $diskon = new MasterDataDiskon;
+            $diskon->kode_diskon = $request->kode_diskon;
+            $diskon->nama_diskon = $request->nama_diskon;
+            $diskon->jumlah_diskon = $request->jumlah_diskon;
+            $diskon->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+            $diskon->status_diskon = 'Diskon Khusus';
             
             $diskon->save();
             return $diskon;
