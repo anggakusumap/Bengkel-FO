@@ -26,7 +26,7 @@ class MasterDataDiskonController extends Controller
         $idbaru = $idlama + 1;
         $blt = date('m');
 
-        $jenis_spareaprt = Jenissparepart::get();
+        $jenis_sparepart = Jenissparepart::get();
         $kode_diskon = 'E-BengkelDisc' . '/' . $blt . '-' . $idbaru;
 
         return view('pages.frontoffice.masterdata.diskon.index', compact('diskon', 'kode_diskon','jenis_sparepart'));
