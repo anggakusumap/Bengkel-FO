@@ -500,8 +500,7 @@
         var jumlah_diskon = $('#jumlah_diskon').val()
         var radio = $('#radio1').find("input[name='status_diskon']:checked").val()
 
-        if (radio == 'Diskon Khusus') {
-
+        if (radio == 'Diskon Umum') {
             var data = {
                 _token: _token,
                 kode_diskon: kode_diskon,
@@ -559,7 +558,7 @@
                 });
             }
 
-        } else if (radio == 'Diskon Umum') {
+        } else if (radio == 'Diskon Khusus') {
             var data = {
                 _token: _token,
                 kode_diskon: kode_diskon,
