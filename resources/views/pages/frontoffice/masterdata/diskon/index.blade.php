@@ -242,6 +242,11 @@
                             <input class="form-control" name="jumlah_diskon" type="number" id="jumlah_diskon"
                                 placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}" required />
                         </div>
+                        <div class="form-group" id="MinimalOrder" style="display:block">
+                            <label class="small mb-1 mr-1" for="min_order">Minimal Order</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" name="min_order" type="number" id="min_order"
+                                placeholder="Input Minimal Order" value="{{ old('min_order') }}" required />
+                        </div>
                         <div class="form-group" id="KelompokTransaksiStyle" style="display:none">
                             <label class="small mb-1" for="id_jenis_sparepart">Pilih Kelompok
                                 Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
@@ -432,8 +437,11 @@
 
             if (value == 'Diskon Umum') {
                 $('#KelompokTransaksiStyle').show()
+                $('#MinimalOrder').hide()
+                
             } else {
                 $('#KelompokTransaksiStyle').hide()
+                $('#MinimalOrder').show()
             }
 
 
