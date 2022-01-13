@@ -29,20 +29,19 @@
     <div class="container mt-n10">
 
         <div class="card mb-4">
-            <div class="card-header">Detail Diskon</div>
             <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <label class="small mb-1" for="tahun_gaji">Kode Diskon</label>
                         <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
                             placeholder="Input Tahun Gaji" value="{{ $item->kode_diskon }}" readonly />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <label class="small mb-1" for="tahun_gaji">Nama Diskon</label>
                         <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
                             placeholder="Input Tahun Gaji" value="{{ $item->nama_diskon }}" readonly />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <label class="small mb-1" for="bulan_gaji">Jumlah Diskon</label>
                         <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
                             placeholder="Input Tahun Gaji" value="{{ $item->jumlah_diskon }}%" readonly />
