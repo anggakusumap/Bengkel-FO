@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontOffice\Diskonrequest;
+use App\Model\FrontOffice\Detaildiskon;
 use Illuminate\Http\Request;
 use App\Model\FrontOffice\MasterDataDiskon;
 use App\Model\Inventory\Jenissparepart;
@@ -18,7 +19,8 @@ class MasterDataDiskonController extends Controller
      */
     public function index()
     {
-        $diskon = MasterDataDiskon::get();
+        $diskon = MasterDataDiskon::where('status_diskon','=','Diskon Umum')->get();
+        $voucher = MasterDataDiskon::where('status_diskon','=','Diskon Khusus')->get();
 
         $id = MasterDataDiskon::getId();
         foreach ($id as $value);
@@ -29,7 +31,7 @@ class MasterDataDiskonController extends Controller
         $jenis_sparepart = Jenissparepart::get();
         $kode_diskon = 'E-BengkelDisc' . '/' . $blt . '-' . $idbaru;
 
-        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon', 'kode_diskon','jenis_sparepart'));
+        return view('pages.frontoffice.masterdata.diskon.index', compact('diskon','voucher', 'kode_diskon','jenis_sparepart'));
     }
 
     /**
@@ -139,7 +141,13 @@ class MasterDataDiskonController extends Controller
     public function destroy($id_diskon)
     {
         $diskon = MasterDataDiskon::findOrFail($id_diskon);
-        $diskon->delete();
+        if($diskon->status_diskon == 'Diskon Umum'){
+            Detaildiskon::where('id_diskon', $id_diskon)->delete();
+            $diskon->delete();
+        }else{
+            $diskon->delete();
+        }
+      
 
         return redirect()->back()->with('messagehapus', 'Data Diskon Diskon Berhasil dihapus');
     }

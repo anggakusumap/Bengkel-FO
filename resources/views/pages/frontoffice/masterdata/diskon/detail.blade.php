@@ -49,7 +49,7 @@
                     <div class="form-group col-md-4">
                         <label class="small mb-1" for="bulan_gaji">Minimal Order</label>
                         <input class="form-control" id="tahun_gaji" type="text" name="tahun_gaji"
-                            placeholder="Input Tahun Gaji" value="{{ $item->min_order }}%" readonly />
+                            placeholder="Input Tahun Gaji" value="Rp. {{ number_format($item->min_order) }}" readonly />
                     </div>
                     @else
 

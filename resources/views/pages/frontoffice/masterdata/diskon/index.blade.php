@@ -154,33 +154,71 @@
                     </div>
                     <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
                         <div class="datatable">
-                            {{-- SHOW ENTRIES --}}
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered table-hover dataTable" id="dataTableVoucher"
-                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 100%;">
+                                        <table class="table table-bordered table-hover dataTable"
+                                            id="dataTableVoucher" width="100%" cellspacing="0" role="grid"
+                                            aria-describedby="dataTable_info" style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="dataTable" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
                                                         aria-label="Name: activate to sort column descending"
                                                         style="width: 20px;">No</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="dataTable" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
                                                         aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Diskon</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        style="width: 20px;">Kode Diskon</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="dataTable" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
                                                         aria-label="Name: activate to sort column descending"
-                                                        style="width: 20px;">Voucher</th>
-
+                                                        style="width: 20px;">Nama Diskon</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="dataTable" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Jumlah Diskon</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="dataTable" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Actions: activate to sort column ascending"
+                                                        style="width: 77px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse ($voucher as $item)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td>{{ $item->kode_diskon }}</td>
+                                                    <td>{{ $item->nama_diskon }}</td>
+                                                    <td>{{ $item->jumlah_diskon }} %</td>
+                                                    <td>
+                                                        <a href="{{ route('diskon.show', $item->id_diskon) }}"
+                                                            class="btn btn-secondary btn-datatable"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="" data-original-title="Detail">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-primary btn-datatable"
+                                                            type="button" data-toggle="modal"
+                                                            data-target="#Modaledit-{{ $item->id_diskon }}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-danger btn-datatable"
+                                                            type="button" data-toggle="modal"
+                                                            data-target="#Modalhapus-{{ $item->id_diskon }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
 
-
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
