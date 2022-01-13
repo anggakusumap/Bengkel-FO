@@ -37,8 +37,6 @@
                 <div class="tab-content" id="cardTabContent">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                         <div class="row">
-
-
                             <div class="col-lg-3">
 
                                 <!-- Illustrations -->
@@ -150,46 +148,41 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="example" role="tabpanel"
-                                        aria-labelledby="example-tab">
-                                        <div class="datatable">
-                                            {{-- SHOW ENTRIES --}}
-                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <table class="table table-bordered table-hover dataTable"
-                                                            id="dataTableVoucher" width="100%" cellspacing="0"
-                                                            role="grid" aria-describedby="dataTable_info"
-                                                            style="width: 100%;">
-                                                            <thead>
-                                                                <tr role="row">
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1" aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">No</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1" aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">Diskon</th>
-                                                                    <th class="sorting" tabindex="0"
-                                                                        aria-controls="dataTable" rowspan="1"
-                                                                        colspan="1" aria-sort="ascending"
-                                                                        aria-label="Name: activate to sort column descending"
-                                                                        style="width: 20px;">Voucher</th>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
+                        <div class="datatable">
+                            {{-- SHOW ENTRIES --}}
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableVoucher"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Voucher</th>
 
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -199,6 +192,7 @@
             </div>
         </div>
     </div>
+
 
 
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
