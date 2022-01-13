@@ -211,8 +211,8 @@
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
                         <hr>
                         </hr>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
+                        
+                            <div class="form-group">
                                 <div class="row" id="radio1">
                                     <div class="col-md-6">
                                         <input class="mr-1" value="Diskon Khusus" type="radio"
@@ -224,7 +224,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                  
                         <div class="form-group">
                             <label class="small mb-1" for="kode_diskon">Kode Diskon</label>
                             <input class="form-control" name="kode_diskon" type="text" id="kode_diskon"
@@ -426,7 +426,7 @@
         $('#validasierror').click();
         $('#dataTablePegawai').DataTable()
         $('#dataTableVoucher').DataTable()
-        
+
         $("#radio1").change(function () {
             var value = $("input[name='status_diskon']:checked").val();
 
