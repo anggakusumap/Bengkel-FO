@@ -25,11 +25,11 @@
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Master Dikson</a>
+                            aria-controls="overview" aria-selected="true">Diskon Kelompok Sparepart</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
-                            aria-controls="example" aria-selected="false">Voucher</a>
+                            aria-controls="example" aria-selected="false">Voucher Diskon Khusus</a>
                     </li>
                 </ul>
             </div>
