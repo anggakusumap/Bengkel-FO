@@ -76,7 +76,7 @@ class MasterDataDiskonController extends Controller
     public function show($id_diskon)
     {
         $item = MasterDataDiskon::with('Detail')->find($id_diskon);
-        return view('pages.frontoffice.masterdata.diskon.detail')->compact('item');
+        return view('pages.frontoffice.masterdata.diskon.detail', compact('item'));
     
     }
 
