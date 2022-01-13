@@ -506,6 +506,7 @@
         var kode_diskon = $('#kode_diskon').val()
         var nama_diskon = $('#nama_diskon').val()
         var jumlah_diskon = $('#jumlah_diskon').val()
+        var min_order = $('#min_order').val()
         var radio = $('#radio1').find("input[name='status_diskon']:checked").val()
 
         if (radio == 'Diskon Umum') {
@@ -572,9 +573,10 @@
                 kode_diskon: kode_diskon,
                 nama_diskon: nama_diskon,
                 jumlah_diskon: jumlah_diskon,
-                status_diskon: radio
+                status_diskon: radio,
+                min_order: min_order
             }
-            if (nama_diskon == '' | jumlah_diskon == '') {
+            if (nama_diskon == '' | jumlah_diskon == '' | min_order == '') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',

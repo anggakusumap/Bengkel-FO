@@ -71,6 +71,7 @@ class MasterDataDiskonController extends Controller
             $diskon->jumlah_diskon = $request->jumlah_diskon;
             $diskon->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
             $diskon->status_diskon = 'Diskon Khusus';
+            $diskon->min_order = $request->min_order;
             
             $diskon->save();
             return $diskon;
