@@ -19,93 +19,124 @@
         </div>
     </header>
 
-    {{-- MAIN PAGE CONTENT --}}
-
     <div class="container-fluid mt-n10">
-        <div class="card mb-4">
-            <div class="card card-header-actions">
-                <div class="card-header">List Diskon
-                    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah
-                        Data</button>
-                </div>
+        <div class="card">
+            <div class="card-header border-bottom">
+                <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
+                            aria-controls="overview" aria-selected="true">Master Dikson</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
+                            aria-controls="example" aria-selected="false">Voucher</a>
+                    </li>
+                </ul>
             </div>
             <div class="card-body">
-                <div class="datatable">
-                    @if(session('messageberhasil'))
-                    <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messageberhasil') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+                <div class="tab-content" id="cardTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                        <div class="datatable">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTable"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Kode Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Nama Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Jumlah Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Actions: activate to sort column ascending"
+                                                        style="width: 77px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($diskon as $item)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td>{{ $item->kode_diskon }}</td>
+                                                    <td>{{ $item->nama_diskon }}</td>
+                                                    <td>{{ $item->jumlah_diskon }} %</td>
+                                                    <td>
+                                                        <a href="{{ route('diskon.show', $item->id_diskon) }}"
+                                                            class="btn btn-secondary btn-datatable"
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                            data-original-title="Detail">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-primary btn-datatable" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Modaledit-{{ $item->id_diskon }}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Modalhapus-{{ $item->id_diskon }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
+
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @endif
-                    @if(session('messagehapus'))
-                    <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-                        {{ session('messagehapus') }}
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    @endif
-                    {{-- SHOW ENTRIES --}}
-                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-hover dataTable" id="dataTable" width="100%"
-                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                    <thead>
-                                        <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">No</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Kode Diskon</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Nama Diskon</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 20px;">Jumlah Diskon</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($diskon as $item)
-                                        <tr role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->kode_diskon }}</td>
-                                            <td>{{ $item->nama_diskon }}</td>
-                                            <td>{{ $item->jumlah_diskon }} %</td>
-                                            <td>
-                                                <a href="{{ route('diskon.show', $item->id_diskon) }}"
-                                                    class="btn btn-secondary btn-datatable" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Detail">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_diskon }}">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_diskon }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                       
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                    <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
+                        <div class="datatable">
+                            {{-- SHOW ENTRIES --}}
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableVoucher"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 20px;">Voucher</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,8 +180,8 @@
                                 placeholder="Input Jumlah Diskon" value="{{ old('jumlah_diskon') }}" required />
                         </div>
                         <div class="form-group">
-                            <label class="small mb-1" for="id_jenis_sparepart">Pilih Kelompok Sparepart</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
+                            <label class="small mb-1" for="id_jenis_sparepart">Pilih Kelompok
+                                Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                             <div class="input-group input-group-joined">
                                 <input class="form-control" type="text" placeholder="Pilih Kelompok Sparepart"
                                     aria-label="Search" id="detailjenis" name="detailjenis">
@@ -162,7 +193,8 @@
                                 </div>
                             </div>
                             <div class="small" id="alertsupplier" style="display:none">
-                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih Pegawai!</span>
+                                <span class="font-weight-500 text-danger">Error! Anda Belum Memilih
+                                    Pegawai!</span>
                                 <button class="close" type="button" onclick="$(this).parent().hide()"
                                     aria-label="Close">
                                     <span aria-hidden="true">×</span>
@@ -172,7 +204,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" onclick="submit1(event)"  type="button">Tambah</button>
+                        <button class="btn btn-primary" onclick="submit1(event)" type="button">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -236,7 +268,8 @@
                 <form action="{{ route('diskon.destroy', $item->id_diskon) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Diskon dengan Kode {{ $item->kode_diskon }}
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Diskon dengan Kode
+                        {{ $item->kode_diskon }}
                         ?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -281,9 +314,11 @@
                                         <tbody id="jenissparepart">
                                             @forelse ($jenis_sparepart as $item)
                                             <tr id="item-{{ $item->id_jenis_sparepart }}" role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
+                                                <th scope="row" class="small" class="sorting_1">
+                                                    {{ $loop->iteration}}
                                                 </th>
-                                                <td class="jenis_sparepart"><span id="{{ $item->id_jenis_sparepart }}">{{ $item->jenis_sparepart }}</span>
+                                                <td class="jenis_sparepart"><span
+                                                        id="{{ $item->id_jenis_sparepart }}">{{ $item->jenis_sparepart }}</span>
                                                 </td>
                                                 <td>
                                                     <div class="">
@@ -434,7 +469,7 @@
                         showConfirmButton: false,
                         html: '<h5>Success!</h5>'
                     });
-                    window.location.href = '/frontoffice/diskon/' 
+                    window.location.href = '/frontoffice/diskon/'
                 },
                 error: function (error) {
                     swal.fire({
