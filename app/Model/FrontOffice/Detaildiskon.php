@@ -33,8 +33,4 @@ class Detaildiskon extends Model
         return $this->belongsTo(MasterDataDiskon::class, 'id_diskon','id_diskon');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }
