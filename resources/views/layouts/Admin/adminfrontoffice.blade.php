@@ -81,7 +81,7 @@
                 
                 @endif
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="https://sso.bengkel-kuy.com/sso">
+                    <a class="dropdown-item" href="https://sso.e-bengkelku.com/sso">
                         <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
                         Dashboard SSO
                     </a>
